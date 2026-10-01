@@ -229,30 +229,30 @@
         <div class="col-12">
             <div class="card shadow-sm">
                 <div class="card-body">
-                    <h5 class="card-title mb-3">Purchase orders aging &gt; 30 days</h5>
+                    <h5 class="card-title mb-3">超过30天的采购订单</h5>
                     <div th:if="${agingPos == null or agingPos.isEmpty()}" class="text-muted small">
-                        No POs older than 30 days are still open.
+                        暂无超过30天仍未完成的采购订单。
                     </div>
                     <table th:if="${agingPos != null and !agingPos.isEmpty()}" class="table table-sm align-middle mb-0">
                         <thead>
                             <tr>
-                                <th>PO #</th>
-                                <th>Vendor</th>
-                                <th>Date</th>
-                                <th class="text-end">Age (days)</th>
-                                <th>Status</th>
-                                <th class="text-end">Value</th>
+                                <th>采购订单号</th>
+                                <th>供应商</th>
+                                <th>日期</th>
+                                <th class="text-end">账龄 (天)</th>
+                                <th>状态</th>
+                                <th class="text-end">金额</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr th:each="po : ${agingPos}">
                                 <td><a th:href="@{'/purchase-orders/' + ${po.id}}" th:text="${po.id}">42</a></td>
-                                <td th:text="${po.vendorName}">Vendor</td>
+                                <td th:text="${po.vendorName}">供应商</td>
                                 <td th:text="${po.date}">2026-01-01</td>
                                 <td class="text-end fw-semibold" th:classappend="${po.ageDays > 60 ? 'text-danger' : 'text-warning'}" th:text="${po.ageDays}">0</td>
                                 <td>
-                                    <span th:if="${po.status == 0}" class="badge bg-secondary">IN TRANSIT</span>
-                                    <span th:if="${po.status == 2}" class="badge bg-warning text-dark">PARTIALLY RECEIVED</span>
+                                    <span th:if="${po.status == 0}" class="badge bg-secondary">运输中</span>
+                                    <span th:if="${po.status == 2}" class="badge bg-warning text-dark">部分收货</span>
                                 </td>
                                 <td class="text-end" th:text="${'$' + #numbers.formatDecimal(po.total ?: 0, 0, 'COMMA', 2, 'POINT')}">$0</td>
                             </tr>
@@ -282,7 +282,7 @@
                 data: {
                     labels: dailySalesRaw.map(r => r.day),
                     datasets: [{
-                        label: 'Sales',
+                        label: '销售额',
                         data: dailySalesRaw.map(r => r.total),
                         borderColor: '#0d6efd',
                         backgroundColor: 'rgba(13,110,253,0.15)',
@@ -308,7 +308,7 @@
                 data: {
                     labels: topVendorsRaw.map(r => r.vendorName),
                     datasets: [{
-                        label: 'YTD spend',
+                        label: '本年度采购金额',
                         data: topVendorsRaw.map(r => r.total),
                         backgroundColor: ['#0d6efd', '#6610f2', '#6f42c1', '#d63384', '#fd7e14']
                     }]
@@ -326,7 +326,7 @@
         // --- PO status doughnut ---
         const poEl = document.getElementById('poStatusChart');
         if (poEl && poStatusRaw.length) {
-            const statusLabels = { 0: 'In transit', 1: 'Received', 2: 'Partially received' };
+            const statusLabels = { 0: '运输中', 1: '已收货', 2: '部分收货' };
             const statusColors = { 0: '#6c757d', 1: '#198754', 2: '#ffc107' };
             new Chart(poEl, {
                 type: 'doughnut',
