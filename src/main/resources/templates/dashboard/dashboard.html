@@ -13,10 +13,10 @@
             <div class="card shadow-sm h-100">
                 <div class="card-body">
                     <div class="d-flex align-items-center text-muted small mb-1">
-                        <i class="bi bi-cart me-2"></i>Open sales orders
+                        <i class="bi bi-cart me-2"></i>待处理销售订单
                     </div>
                     <div class="h3 mb-0" th:text="${kpiSo?.count ?: 0}">0</div>
-                    <div class="text-muted small" th:text="${'$' + #numbers.formatDecimal(kpiSo?.totalValue ?: 0, 0, 'COMMA', 2, 'POINT') + ' pending'}">$0</div>
+                    <div class="text-muted small" th:text="${'$' + #numbers.formatDecimal(kpiSo?.totalValue ?: 0, 0, 'COMMA', 2, 'POINT') + ' 待处理'}">$0</div>
                 </div>
             </div>
         </div>
@@ -24,10 +24,10 @@
             <div class="card shadow-sm h-100">
                 <div class="card-body">
                     <div class="d-flex align-items-center text-muted small mb-1">
-                        <i class="bi bi-bag-check me-2"></i>Open purchase orders
+                        <i class="bi bi-bag-check me-2"></i>待处理采购订单
                     </div>
                     <div class="h3 mb-0" th:text="${kpiPo?.count ?: 0}">0</div>
-                    <div class="text-muted small" th:text="${'$' + #numbers.formatDecimal(kpiPo?.totalValue ?: 0, 0, 'COMMA', 2, 'POINT') + ' on order'}">$0</div>
+                    <div class="text-muted small" th:text="${'$' + #numbers.formatDecimal(kpiPo?.totalValue ?: 0, 0, 'COMMA', 2, 'POINT') + ' 待处理'}">$0</div>
                 </div>
             </div>
         </div>
@@ -35,10 +35,10 @@
             <div class="card shadow-sm h-100">
                 <div class="card-body">
                     <div class="d-flex align-items-center text-muted small mb-1">
-                        <i class="bi bi-receipt me-2"></i>Pending receipts
+                        <i class="bi bi-receipt me-2"></i>待处理收货单
                     </div>
                     <div class="h3 mb-0" th:text="${pendingGrns}">0</div>
-                    <div class="text-muted small">GRNs awaiting fulfillment</div>
+                    <div class="text-muted small">等待处理的收货单</div>
                 </div>
             </div>
         </div>
@@ -46,10 +46,10 @@
             <div class="card shadow-sm h-100">
                 <div class="card-body">
                     <div class="d-flex align-items-center text-muted small mb-1">
-                        <i class="bi bi-exclamation-triangle text-warning me-2"></i>Active backorders
+                        <i class="bi bi-exclamation-triangle text-warning me-2"></i>活动缺货订单
                     </div>
                     <div class="h3 mb-0" th:text="${kpiBackorders?.count ?: 0}">0</div>
-                    <div class="text-muted small" th:text="${'$' + #numbers.formatDecimal(kpiBackorders?.totalValue ?: 0, 0, 'COMMA', 2, 'POINT') + ' shorted'}">$0</div>
+                    <div class="text-muted small" th:text="${'$' + #numbers.formatDecimal(kpiBackorders?.totalValue ?: 0, 0, 'COMMA', 2, 'POINT') + ' 缺货金额'}">$0</div>
                 </div>
             </div>
         </div>
