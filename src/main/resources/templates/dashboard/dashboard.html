@@ -133,12 +133,12 @@
         <div class="col-md-6">
             <div class="card shadow-sm h-100">
                 <div class="card-body">
-                    <h5 class="card-title mb-3">Top vendors — YTD spend</h5>
+                    <h5 class="card-title mb-3">供应商采购金额排行（本年度）</h5>
                     <div th:if="${topVendors != null and !topVendors.isEmpty()}">
                         <canvas id="vendorSpendChart" height="160"></canvas>
                     </div>
                     <div th:if="${topVendors == null or topVendors.isEmpty()}" class="text-muted small">
-                        No PO spend this year yet.
+                        本年度暂无采购订单金额记录。
                     </div>
                 </div>
             </div>
@@ -146,12 +146,12 @@
         <div class="col-md-6">
             <div class="card shadow-sm h-100">
                 <div class="card-body">
-                    <h5 class="card-title mb-3">PO status breakdown</h5>
+                    <h5 class="card-title mb-3">采购订单状态分布</h5>
                     <div th:if="${poStatusBuckets != null and !poStatusBuckets.isEmpty()}">
                         <canvas id="poStatusChart" height="160"></canvas>
                     </div>
                     <div th:if="${poStatusBuckets == null or poStatusBuckets.isEmpty()}" class="text-muted small">
-                        No purchase orders.
+                        暂无采购订单。
                     </div>
                 </div>
             </div>
@@ -163,26 +163,26 @@
         <div class="col-md-6">
             <div class="card shadow-sm h-100">
                 <div class="card-body">
-                    <h5 class="card-title mb-3">Items to reorder</h5>
+                    <h5 class="card-title mb-3">待补货商品</h5>
                     <div th:if="${reorderItems == null or reorderItems.isEmpty()}" class="text-muted small">
-                        Nothing critical to reorder — every fast-moving item either has stock or an open PO.
+                        暂无紧急补货商品——高周转商品均有库存或正在采购。
                     </div>
                     <table th:if="${reorderItems != null and !reorderItems.isEmpty()}" class="table table-sm align-middle mb-0">
                         <thead>
                             <tr>
                                 <th>SKU</th>
-                                <th>Description</th>
-                                <th>Vendor</th>
-                                <th class="text-end">QoH</th>
-                                <th class="text-end">Wk velocity</th>
-                                <th class="text-end">WoI</th>
+                                <th>商品描述</th>
+                                <th>供应商</th>
+                                <th class="text-end">库存数量</th>
+                                <th class="text-end">周销售速度</th>
+                                <th class="text-end">库存周数</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr th:each="item : ${reorderItems}">
                                 <td th:text="${item.sku}">123</td>
                                 <td th:text="${item.description}">Desc</td>
-                                <td th:text="${item.vendorName}">Vendor</td>
+                                <td th:text="${item.vendorName}">供应商</td>
                                 <td class="text-end" th:text="${item.qtyOnHand}">0</td>
                                 <td class="text-end" th:text="${item.weeklyVelocity}">0</td>
                                 <td class="text-end fw-semibold text-danger" th:text="${item.weeksOfInventory}">0</td>
@@ -195,18 +195,18 @@
         <div class="col-md-6">
             <div class="card shadow-sm h-100">
                 <div class="card-body">
-                    <h5 class="card-title mb-3">Top 5 movers</h5>
+                    <h5 class="card-title mb-3">销量最高的5个商品</h5>
                     <div th:if="${topFiveMovers == null or topFiveMovers.isEmpty()}" class="text-muted small">
-                        No sales velocity recorded.
+                        暂无销售速度记录。
                     </div>
                     <table th:if="${topFiveMovers != null and !topFiveMovers.isEmpty()}" class="table table-sm align-middle mb-0">
                         <thead>
                             <tr>
                                 <th>SKU</th>
-                                <th>Description</th>
-                                <th class="text-end" title="Quantity on Hand">Quantity on Hand</th>
-                                <th class="text-end" title="Average Weekly Sales">Avg Weekly Sales</th>
-                                <th class="text-end" title="Weeks of Inventory (Quantity on Hand &divide; Avg Weekly Sales)">Weeks of Inventory</th>
+                                <th>商品描述</th>
+                                <th class="text-end" title="Quantity on Hand">现有库存数量</th>
+                                <th class="text-end" title="Average Weekly Sales">平均周销量</th>
+                                <th class="text-end" title="Weeks of Inventory (Quantity on Hand &divide; Avg Weekly Sales)">库存周数</th>
                             </tr>
                         </thead>
                         <tbody>
