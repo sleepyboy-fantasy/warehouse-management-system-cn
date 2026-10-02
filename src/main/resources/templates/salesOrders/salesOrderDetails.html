@@ -6,19 +6,19 @@
 
 <div class="container">
     <!-- Page headers -->
-    <h1 class="my-3 text-center" th:text="|Sales Order: ${salesOrder.id}|">Sales Order</h1>
-    <h3 class="my-3 text-center" th:text="|Customer: ${salesOrder.customer.name}|">Customer</h3>
-    <h3 class="my-3 text-center" th:text="|Date: ${#temporals.monthNameShort(salesOrder.date)} ${#temporals.format(salesOrder.date, ' dd, yyyy')}|">Date</h3>
-    <!-- Customer list as table -->
+    <h1 class="my-3 text-center" th:text="|销售订单: ${salesOrder.id}|">销售订单</h1>
+    <h3 class="my-3 text-center" th:text="|客户: ${salesOrder.customer.name}|">客户</h3>
+    <h3 class="my-3 text-center" th:text="|日期: ${#temporals.monthNameShort(salesOrder.date)} ${#temporals.format(salesOrder.date, ' dd, yyyy')}|">日期</h3>
+    <!-- 销售订单明细表格 -->
     <table class="table">
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Item</th>
-                <th scope="col">Description</th>
-                <th scope="col">Sales Price</th>
-                <th scope="col">Qty</th>
-                <th scope="col">Subtotal</th>
+                <th scope="col">商品</th>
+                <th scope="col">商品描述</th>
+                <th scope="col">销售价格</th>
+                <th scope="col">数量</th>
+                <th scope="col">小计</th>
             </tr>
         </thead>
         <tbody>
@@ -37,7 +37,7 @@
 </div>
 <div class="container my-3">
     <a th:href="@{/sales-orders}"
-        class="btn btn-outline-secondary col-12">Back</a>
+        class="btn btn-outline-secondary col-12">返回</a>
 </div>
 
 <!-- Header fragment -->
