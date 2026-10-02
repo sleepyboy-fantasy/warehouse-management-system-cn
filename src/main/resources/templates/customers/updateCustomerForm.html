@@ -39,19 +39,19 @@
                     </div>
                     <div class="col-md-3">
                         <label for="state" class="form-label">地区</label>
-                        <!-- Drop down list of US States -->
-                        <select class="form-select" th:field="*{state}" aria-label="Default select example"
+                        <!-- 地区下拉选择列表 -->
+                        <select class="form-select" th:field="*{state}" aria-label="地区选择"
                             th:errorclass="fieldError" id="state" required name="state">
                             <option value="" selected th:text="${customer.state}"></option>
                             <option th:each="state: ${states}" th:text="|${state.name}|"
-                                th:value="${state.abbreviation}">Two
+                                th:value="${state.abbreviation}">请选择
                             </option>
                         </select>
                         <div class="invalid-feedback">
                             请选择地区
                         </div>
                     </div>
-                    <!-- End of state field-->
+                    <!-- 地区字段结束 -->
                     <div class="col-md-4">
                         <label for="zipcode" class="form-label">邮政编码</label>
                         <input class="form-control" th:field="*{zipcode}" type="text" id="zipcode" th:value="${customer.zipcode}">
