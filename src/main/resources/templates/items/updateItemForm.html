@@ -8,7 +8,7 @@
     <div class="container">
         <div class="container mx-auto col-md-6" id="update-item-form">
             <div id="header">
-                <h1 class="mt-3">Update Item</h1>
+                <h1 class="mt-3">编辑物品</h1>
             </div>
 
             <div id="updateItemForm">
@@ -18,35 +18,35 @@
                     <!-- FROM/TO INPUTS FIELDS-->
                     <!-- Vendor field -->
                     <div class="col-md-12">
-                        <label for="vendor" class="form-label">Vendor</label>
+                        <label for="vendor" class="form-label">供应商</label>
                         <!-- Drop down list of Vendors in DBA -->
                         <input class="form-control" type="text" id="vendor" disabled readonly name="vendor" th:field="*{vendor.name}">
                     </div>
                     <div class="invalid-feedback">
-                        Please select the vendor
+                        请选择供应商
                     </div>
                      <!-- End of Vendor field-->
                      <!-- SKU-->
                     <div class="col-md-4">
-                        <label for="sku" class="form-label">Sku</label>
+                        <label for="sku" class="form-label">货品编码</label>
                         <input class="form-control" th:field="*{sku}" type="number" id="sku" th:value="${item.sku}" required>
                     </div>
                     <div class="invalid-feedback">
-                        Please enter the SKU number
+                        请输入货品编码
                     </div>
                      <!-- End of SKU field-->
                      <!-- Description-->
                     <div class="col-md-8">
-                        <label for="description" class="form-label">Description</label>
+                        <label for="description" class="form-label">物品描述</label>
                         <input class="form-control" th:field="*{description}" type="text" id="description" th:value="${item.description}" required>
                     </div>
                     <div class="invalid-feedback">
-                        Please enter the description
+                        请输入物品描述
                     </div>
                     <!-- End of description field-->
                     <div class="col-12">
                         <div class="d-grid mx-auto">
-                            <button type="submit" class="btn btn-dark col-12">Update Item</button>
+                            <button type="submit" class="btn btn-dark col-12">保存修改</button>
                         </div>
                     </div>
                 </form>
