@@ -8,29 +8,29 @@
     <!-- ALERTS TO PROVIDE USER FEEDBACK ON SUCCESSFUL ITEM DELETION -->
     <div th:if="${param.deleted}">
         <div class="alert alert-success alert-dismissible fade show my-3" role="alert">
-            Item has been deleted
+            物品删除成功
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     </div>
      <!-- ALERTS TO PROVIDE USER FEEDBACK ON UNSUCCESSFUL ITEM DELETION -->
      <div th:if="${param.failedToDelete}">
         <div class="alert alert-danger alert-dismissible fade show my-3" role="alert">
-            Cannot delete billed Item
+            无法删除已开票物品
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     </div>
     <!-- ALERTS TO PROVIDE USER FEEDBACK ON ITEM NOT FOUND -->
     <div th:if="${param.notFound}">
         <div class="alert alert-info alert-dismissible fade show my-3" role="alert">
-            Item not found
+            未找到物品信息
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     </div>
     <!-- Page headers -->
     <div class="d-flex justify-content-between align-items-center my-3">
-        <h1 class="m-0">Item List</h1>
+        <h1 class="m-0">物品列表</h1>
         <a class="btn btn-dark" th:href="@{/items/new-item}">
-            <i class="bi bi-plus-lg me-1"></i>New item
+            <i class="bi bi-plus-lg me-1"></i>新增物品
         </a>
     </div>
 
@@ -38,9 +38,9 @@
     <form th:action="@{/items}" method="get" th:object="${criteria}" class="card shadow-sm mb-3">
         <div class="card-body row g-2 align-items-end">
             <div class="col-md-8">
-                <label class="form-label small mb-1">Search by description</label>
+                <label class="form-label small mb-1">按物品描述搜索</label>
                 <input type="search" class="form-control" th:field="*{description}"
-                       placeholder="Type a product description..."
+                       placeholder="请输入物品描述..."
                        data-autocomplete-source="ITEM"
                        data-autocomplete-mode="CONTAINS"
                        data-autocomplete-fill-on-select="true">
@@ -54,11 +54,11 @@
             </div>
             <div class="col-md-4 d-flex gap-2">
                 <button type="submit" class="btn btn-dark flex-grow-1">
-                    <i class="bi bi-search me-1"></i>Search
+                    <i class="bi bi-search me-1"></i>搜索
                 </button>
                 <button type="button" class="btn btn-outline-secondary"
                         data-bs-toggle="modal" data-bs-target="#advancedSearchModal">
-                    <i class="bi bi-funnel me-1"></i>Advanced
+                    <i class="bi bi-funnel me-1"></i>高级搜索
                 </button>
             </div>
         </div>
@@ -66,9 +66,9 @@
 
     <div th:if="${criteria.isActive()}" class="d-flex justify-content-between align-items-center mb-2">
         <span class="text-muted small"
-              th:text="|Filtered: ${page.totalElements} match(es)|">Filtered: 12 matches</span>
+              th:text="|已筛选：${page.totalElements} 条匹配记录|">已筛选：12 条匹配记录</span>
         <a th:href="@{/items}" class="btn btn-link btn-sm">
-            <i class="bi bi-x-circle me-1"></i>Clear filters
+            <i class="bi bi-x-circle me-1"></i>清除筛选
         </a>
     </div>
 
@@ -76,10 +76,10 @@
     <table class="table">
         <thead>
             <tr>
-                <th th:replace="~{fragments/pagination :: sortHeader(label='Id', property='id', page=${page}, baseUrl='/items')}"></th>
-                <th th:replace="~{fragments/pagination :: sortHeader(label='Vendor', property='vendor.name', page=${page}, baseUrl='/items')}"></th>
-                <th th:replace="~{fragments/pagination :: sortHeader(label='SKU', property='sku', page=${page}, baseUrl='/items')}"></th>
-                <th th:replace="~{fragments/pagination :: sortHeader(label='Description', property='description', page=${page}, baseUrl='/items')}"></th>
+                <th th:replace="~{fragments/pagination :: sortHeader(label='编号', property='id', page=${page}, baseUrl='/items')}"></th>
+                <th th:replace="~{fragments/pagination :: sortHeader(label='供应商', property='vendor.name', page=${page}, baseUrl='/items')}"></th>
+                <th th:replace="~{fragments/pagination :: sortHeader(label='库存编号', property='sku', page=${page}, baseUrl='/items')}"></th>
+                <th th:replace="~{fragments/pagination :: sortHeader(label='物品描述', property='description', page=${page}, baseUrl='/items')}"></th>
                 <th scope="col"></th>
                 <th scope="col"></th>
                 <th scope="col"></th>
@@ -92,12 +92,12 @@
                 <td th:text="${item.sku}">Otto</td>
                 <td th:text="${item.description}">@mdo</td>
                 <!-- Link to see item details -->
-                <td><a th:href="@{|/items/${item.id}|}" class="btn btn-outline-secondary col-12">Details</a></td>
-                <td><a th:href="@{|/items/${item.id}/update|}" class="btn btn-outline-secondary col-12">Edit</a></td>
+                <td><a th:href="@{|/items/${item.id}|}" class="btn btn-outline-secondary col-12">详情</a></td>
+                <td><a th:href="@{|/items/${item.id}/update|}" class="btn btn-outline-secondary col-12">编辑</a></td>
                 <!-- Button to remove item | TODO:should be only available for ADMIN ROLE-->
                 <td>
                     <form th:action="@{/items/{id}(id=${item.id})}" method="POST">
-                        <button type="submit" class="btn btn-dark col-12" name="delete">Delete</button>
+                        <button type="submit" class="btn btn-dark col-12" name="delete">删除</button>
                     </form>
                 </td>
             </tr>
@@ -111,68 +111,68 @@
   <div class="modal-dialog modal-lg modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="advancedSearchModalLabel"><i class="bi bi-funnel me-2"></i>Advanced Search — Items</h5>
+        <h5 class="modal-title" id="advancedSearchModalLabel"><i class="bi bi-funnel me-2"></i>高级搜索 - 物品</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <form th:action="@{/items}" method="get" th:object="${criteria}">
         <div class="modal-body">
-          <p class="text-muted small mb-3">Every field is optional — leave all blank to list every item. Filters are AND-combined.</p>
+          <p class="text-muted small mb-3">所有字段均为可选项，留空则显示全部物品。多个条件之间使用 AND 组合查询。</p>
 
           <div class="row g-2 align-items-end mb-3">
             <div class="col-md-3">
-              <label class="form-label small mb-1">Item id</label>
+              <label class="form-label small mb-1">物品编号</label>
               <select class="form-select form-select-sm" th:field="*{idMode}">
                 <option th:each="m : ${textModes}" th:value="${m}" th:text="${m.name().replace('_', ' ').toLowerCase()}">starts with</option>
               </select>
             </div>
             <div class="col-md-9">
               <label class="form-label small mb-1">&nbsp;</label>
-              <input type="text" class="form-control" th:field="*{id}" placeholder="e.g. 10">
+              <input type="text" class="form-control" th:field="*{id}" placeholder="例如： 10">
             </div>
           </div>
 
           <div class="row g-2 align-items-end mb-3">
             <div class="col-md-3">
-              <label class="form-label small mb-1">SKU</label>
+              <label class="form-label small mb-1">库存编号</label>
               <select class="form-select form-select-sm" th:field="*{skuMode}">
                 <option th:each="m : ${textModes}" th:value="${m}" th:text="${m.name().replace('_', ' ').toLowerCase()}">starts with</option>
               </select>
             </div>
             <div class="col-md-9">
               <label class="form-label small mb-1">&nbsp;</label>
-              <input type="text" class="form-control" th:field="*{sku}" placeholder="e.g. 1010">
+              <input type="text" class="form-control" th:field="*{sku}" placeholder="例如： 1010">
             </div>
           </div>
 
           <div class="row g-2 align-items-end mb-3">
             <div class="col-md-3">
-              <label class="form-label small mb-1">Description</label>
+              <label class="form-label small mb-1">物品描述</label>
               <select class="form-select form-select-sm" th:field="*{descriptionMode}">
                 <option th:each="m : ${textModes}" th:value="${m}" th:text="${m.name().replace('_', ' ').toLowerCase()}">contains</option>
               </select>
             </div>
             <div class="col-md-9">
               <label class="form-label small mb-1">&nbsp;</label>
-              <input type="text" class="form-control" th:field="*{description}" placeholder="e.g. MacBook">
+              <input type="text" class="form-control" th:field="*{description}" placeholder="例如： MacBook">
             </div>
           </div>
 
           <div class="row g-2 align-items-end">
             <div class="col-md-3">
-              <label class="form-label small mb-1">Vendor</label>
+              <label class="form-label small mb-1">供应商</label>
               <select class="form-select form-select-sm" th:field="*{vendorMode}">
                 <option th:each="m : ${textModes}" th:value="${m}" th:text="${m.name().replace('_', ' ').toLowerCase()}">contains</option>
               </select>
             </div>
             <div class="col-md-9">
               <label class="form-label small mb-1">&nbsp;</label>
-              <input type="text" class="form-control" th:field="*{vendor}" placeholder="e.g. Apple">
+              <input type="text" class="form-control" th:field="*{vendor}" placeholder="例如： Apple">
             </div>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
-          <button type="submit" class="btn btn-dark"><i class="bi bi-search me-1"></i>Search</button>
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">取消</button>
+          <button type="submit" class="btn btn-dark"><i class="bi bi-search me-1"></i>搜索</button>
         </div>
       </form>
     </div>
