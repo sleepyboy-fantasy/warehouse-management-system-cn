@@ -8,7 +8,7 @@
     <div class="container">
         <div class="container mx-auto col-md-6" id="update-item-price-form">
             <div id="header">
-                <h1 class="mt-3" th:text="|Update Price for Item: ${item.id} ${item.description}|">New Price for Item</h1>
+                <h1 class="mt-3" th:text="|编辑物品价格：${item.id} ${item.description}|">编辑物品价格</h1>
             </div>
 
             <div id="updateItemPriceForm">
@@ -18,34 +18,34 @@
                     <!-- FROM/TO INPUTS FIELDS-->
                     <!-- Start Date field -->
                     <div class="col-md-6">
-                        <label for="startDate" class="form-label">From</label>
+                        <label for="startDate" class="form-label">生效开始</label>
                         <input class="form-control" th:field="*{start}" type="text" id="startDate" disabled readonly>
                     </div>
                     <div class="invalid-feedback">
-                        Please enter the effective date
+                        请输入生效日期
                     </div>
                      <!-- End of start date field-->
                      <!-- End date-->
                     <div class="col-md-6">
-                        <label for="endDate" class="form-label">To</label>
+                        <label for="endDate" class="form-label">生效结束</label>
                         <input class="form-control" th:field="*{end}" type="date" id="endDate" th:value="${itemPrice.end}" >
                     </div>
                     <div class="invalid-feedback">
-                        Please enter the termination date
+                        请输入结束日期
                     </div>
                      <!-- End of end date field-->
                      <!-- Price-->
                     <div class="col-md-12">
-                        <label for="price" class="form-label">Price</label>
+                        <label for="price" class="form-label">价格</label>
                         <input class="form-control" th:field="*{price}" step="0.01" type="number" id="price" disabled readonly th:value="${itemPrice.price}">
                     </div>
                     <div class="invalid-feedback">
-                        Please enter the price
+                        请输入价格
                     </div>
                     <!-- End of price field-->
                     <div class="col-12">
                         <div class="d-grid mx-auto">
-                            <button type="submit" class="btn btn-dark col-12">Update Price</button>
+                            <button type="submit" class="btn btn-dark col-12">保存价格修改</button>
                         </div>
                     </div>
                 </form>
