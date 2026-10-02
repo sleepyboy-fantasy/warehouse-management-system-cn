@@ -8,29 +8,29 @@
     <!-- ALERTS TO PROVIDE USER FEEDBACK ON SUCCESSFUL vendor DELETION -->
     <div th:if="${param.deleted}">
         <div class="alert alert-success alert-dismissible fade show my-3" role="alert">
-            vendor has been deleted
+            供应商删除成功
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     </div>
      <!-- ALERTS TO PROVIDE USER FEEDBACK ON UNSUCCESSFUL vendor DELETION -->
      <div th:if="${param.failedToDelete}">
         <div class="alert alert-danger alert-dismissible fade show my-3" role="alert">
-            Cannot delete billed vendor
+            无法删除已开票供应商
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     </div>
     <!-- ALERTS TO PROVIDE USER FEEDBACK ON vendor NOT FOUND -->
     <div th:if="${param.notFound}">
         <div class="alert alert-info alert-dismissible fade show my-3" role="alert">
-            vendor not found
+            未找到供应商信息
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     </div>
     <!-- Page headers -->
     <div class="d-flex justify-content-between align-items-center my-3">
-        <h1 class="m-0">Vendor List</h1>
+        <h1 class="m-0">供应商列表</h1>
         <a class="btn btn-dark" th:href="@{/vendors/new-vendor}">
-            <i class="bi bi-plus-lg me-1"></i>New vendor
+            <i class="bi bi-plus-lg me-1"></i>新增供应商
         </a>
     </div>
 
@@ -38,9 +38,9 @@
     <form th:action="@{/vendors}" method="get" th:object="${criteria}" class="card shadow-sm mb-3">
         <div class="card-body row g-2 align-items-end">
             <div class="col-md-8">
-                <label class="form-label small mb-1">Search by name</label>
+                <label class="form-label small mb-1">按供应商名称搜索</label>
                 <input type="search" class="form-control" th:field="*{name}"
-                       placeholder="Type a vendor name..."
+                       placeholder="请输入供应商名称..."
                        data-autocomplete-source="VENDOR"
                        data-autocomplete-mode="CONTAINS"
                        data-autocomplete-fill-on-select="true">
@@ -54,11 +54,11 @@
             </div>
             <div class="col-md-4 d-flex gap-2">
                 <button type="submit" class="btn btn-dark flex-grow-1">
-                    <i class="bi bi-search me-1"></i>Search
+                    <i class="bi bi-search me-1"></i>搜索
                 </button>
                 <button type="button" class="btn btn-outline-secondary"
                         data-bs-toggle="modal" data-bs-target="#advancedSearchModal">
-                    <i class="bi bi-funnel me-1"></i>Advanced
+                    <i class="bi bi-funnel me-1"></i>高级搜索
                 </button>
             </div>
         </div>
@@ -66,9 +66,9 @@
 
     <div th:if="${criteria.isActive()}" class="d-flex justify-content-between align-items-center mb-2">
         <span class="text-muted small"
-              th:text="|Filtered: ${page.totalElements} match(es)|">Filtered: 3 matches</span>
+              th:text="|已筛选：${page.totalElements} 条匹配记录|">已筛选：3 条匹配记录</span>
         <a th:href="@{/vendors}" class="btn btn-link btn-sm">
-            <i class="bi bi-x-circle me-1"></i>Clear filters
+            <i class="bi bi-x-circle me-1"></i>清除筛选
         </a>
     </div>
 
@@ -76,12 +76,12 @@
     <table class="table">
         <thead>
             <tr>
-                <th th:replace="~{fragments/pagination :: sortHeader(label='Id', property='id', page=${page}, baseUrl='/vendors')}"></th>
-                <th th:replace="~{fragments/pagination :: sortHeader(label='Name', property='name', page=${page}, baseUrl='/vendors')}"></th>
-                <th th:replace="~{fragments/pagination :: sortHeader(label='Street', property='street', page=${page}, baseUrl='/vendors')}"></th>
-                <th th:replace="~{fragments/pagination :: sortHeader(label='City', property='city', page=${page}, baseUrl='/vendors')}"></th>
-                <th th:replace="~{fragments/pagination :: sortHeader(label='State', property='state', page=${page}, baseUrl='/vendors')}"></th>
-                <th th:replace="~{fragments/pagination :: sortHeader(label='Zipcode', property='zipcode', page=${page}, baseUrl='/vendors')}"></th>
+                <th th:replace="~{fragments/pagination :: sortHeader(label='编号', property='id', page=${page}, baseUrl='/vendors')}"></th>
+                <th th:replace="~{fragments/pagination :: sortHeader(label='供应商名称', property='name', page=${page}, baseUrl='/vendors')}"></th>
+                <th th:replace="~{fragments/pagination :: sortHeader(label='街道地址', property='street', page=${page}, baseUrl='/vendors')}"></th>
+                <th th:replace="~{fragments/pagination :: sortHeader(label='城市', property='city', page=${page}, baseUrl='/vendors')}"></th>
+                <th th:replace="~{fragments/pagination :: sortHeader(label='地区', property='state', page=${page}, baseUrl='/vendors')}"></th>
+                <th th:replace="~{fragments/pagination :: sortHeader(label='邮编', property='zipcode', page=${page}, baseUrl='/vendors')}"></th>
                 <th scope="col"></th>
                 <th scope="col"></th>
                 <th scope="col"></th>
@@ -95,11 +95,11 @@
                 <td th:text="${vendor.city}">@mdo</td>
                 <td th:text="${vendor.state}">@mdo</td>
                 <td th:text="${vendor.zipcode}">@mdo</td>
-                <td><a th:href="@{|/vendors/${vendor.id}|}" class="btn btn-outline-secondary col-12">Details</a></td>
-                <td><a th:href="@{|/vendors/${vendor.id}/update|}" class="btn btn-outline-success col-12">Edit</a></td>
+                <td><a th:href="@{|/vendors/${vendor.id}|}" class="btn btn-outline-secondary col-12">详情</a></td>
+                <td><a th:href="@{|/vendors/${vendor.id}/update|}" class="btn btn-outline-success col-12">编辑</a></td>
                 <td>
                     <form th:action="@{/vendors/{id}(id=${vendor.id})}" method="POST">
-                        <button type="submit" class="btn btn-dark col-12" name="delete">Delete</button>
+                        <button type="submit" class="btn btn-dark col-12" name="delete">删除</button>
                     </form>
                 </td>
             </tr>
@@ -113,36 +113,36 @@
   <div class="modal-dialog modal-lg modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="advancedSearchModalLabel"><i class="bi bi-funnel me-2"></i>Advanced Search — Vendors</h5>
+        <h5 class="modal-title" id="advancedSearchModalLabel"><i class="bi bi-funnel me-2"></i>高级搜索 - 供应商</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <form th:action="@{/vendors}" method="get" th:object="${criteria}">
         <div class="modal-body">
-          <p class="text-muted small mb-3">Every field is optional — leave all blank to list every vendor. Filters are AND-combined.</p>
+          <p class="text-muted small mb-3">所有字段均为可选项，留空则显示全部供应商。多个条件之间使用 AND 组合查询。</p>
 
           <div class="row g-2 align-items-end mb-3">
             <div class="col-md-3">
-              <label class="form-label small mb-1">Vendor id</label>
+              <label class="form-label small mb-1">供应商编号</label>
               <select class="form-select form-select-sm" th:field="*{idMode}">
                 <option th:each="m : ${textModes}" th:value="${m}" th:text="${m.name().replace('_', ' ').toLowerCase()}">starts with</option>
               </select>
             </div>
             <div class="col-md-9">
               <label class="form-label small mb-1">&nbsp;</label>
-              <input type="text" class="form-control" th:field="*{id}" placeholder="e.g. 10">
+              <input type="text" class="form-control" th:field="*{id}" placeholder="例如：10">
             </div>
           </div>
 
           <div class="row g-2 align-items-end mb-3">
             <div class="col-md-3">
-              <label class="form-label small mb-1">Name</label>
+              <label class="form-label small mb-1">供应商名称</label>
               <select class="form-select form-select-sm" th:field="*{nameMode}">
                 <option th:each="m : ${textModes}" th:value="${m}" th:text="${m.name().replace('_', ' ').toLowerCase()}">contains</option>
               </select>
             </div>
             <div class="col-md-9">
               <label class="form-label small mb-1">&nbsp;</label>
-              <input type="text" class="form-control" th:field="*{name}" placeholder="e.g. Apple">
+              <input type="text" class="form-control" th:field="*{name}" placeholder="例如：苹果公司">
             </div>
           </div>
 
@@ -155,7 +155,7 @@
             </div>
             <div class="col-md-9">
               <label class="form-label small mb-1">&nbsp;</label>
-              <input type="text" class="form-control" th:field="*{city}" placeholder="e.g. Cupertino">
+              <input type="text" class="form-control" th:field="*{city}" placeholder="例如：上海">
             </div>
           </div>
 
@@ -168,13 +168,13 @@
             </div>
             <div class="col-md-9">
               <label class="form-label small mb-1">&nbsp;</label>
-              <input type="text" class="form-control" th:field="*{state}" placeholder="e.g. CA">
+              <input type="text" class="form-control" th:field="*{state}" placeholder="例如：安徽">
             </div>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
-          <button type="submit" class="btn btn-dark"><i class="bi bi-search me-1"></i>Search</button>
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">取消</button>
+          <button type="submit" class="btn btn-dark"><i class="bi bi-search me-1"></i>搜索</button>
         </div>
       </form>
     </div>
