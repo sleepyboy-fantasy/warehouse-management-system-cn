@@ -6,7 +6,7 @@
 
 <div class="container-sm">
     <div id="header" class="text-center mb-3">
-        <h1 class="mt-4" th:text="|Customer: ${customer.name}|">Search for flights</h1>
+        <h1 class="mt-4" th:text="|客户：${customer.name}|">客户详情</h1>
     </div>
     <div class="card col-md-8 offset-md-2">
         <!-- RENDER A PICTURE FROM UNSPLASH API USING FLIGHT.DESTINATION AND TRAVELING AS KEYWORDS -->
@@ -15,13 +15,13 @@
             onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1500835556837-99ac94a94552?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=12004&q=450';" />
         <div class="card-body">
             <h5 class="card-title" th:text="${customer.formattedAddress}">Card title</h5>
-            <p class="card-text font-weight-bold" th:text="|Contact Info ${customer.contactInfo}|"></p>
+            <p class="card-text font-weight-bold" th:text="|联系方式：${customer.contactInfo}|"></p>
         </div>
     </div>
 
     <div class="col-md-8 offset-md-2 my-3">
         <a th:href="@{/customers}"
-            class="btn btn-outline-secondary col-12">Back</a>
+            class="btn btn-outline-secondary col-12">返回</a>
     </div>
 </div>
 
