@@ -6,19 +6,19 @@
 
 <div class="container">
     <!-- Page headers -->
-    <h1 class="my-3 text-center" th:text="|Purchase Order: ${purchaseOrder.id}|">Purchase Order</h1>
-    <h3 class="my-3 text-center" th:text="|Vendor: ${purchaseOrder.vendor.name}|">Vendor</h3>
-    <h3 class="my-3 text-center" th:text="|Date: ${#temporals.monthNameShort(purchaseOrder.date)} ${#temporals.format(purchaseOrder.date, ' dd, yyyy')}|">Date</h3>
-    <!-- Customer list as table -->
+    <h1 class="my-3 text-center" th:text="|采购订单：${purchaseOrder.id}|">采购订单</h1>
+    <h3 class="my-3 text-center" th:text="|供应商：${purchaseOrder.vendor.name}|">供应商</h3>
+    <h3 class="my-3 text-center" th:text="|日期：${#temporals.monthNameShort(purchaseOrder.date)} ${#temporals.format(purchaseOrder.date, ' dd, yyyy')}|">日期</h3>
+    <!-- 采购订单明细表格 -->
     <table class="table">
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Item</th>
-                <th scope="col">Description</th>
-                <th scope="col">Cost</th>
-                <th scope="col">Qty</th>
-                <th scope="col">Subtotal</th>
+                <th scope="col">商品</th>
+                <th scope="col">商品描述</th>
+                <th scope="col">采购成本</th>
+                <th scope="col">数量</th>
+                <th scope="col">小计</th>
             </tr>
         </thead>
         <tbody>
@@ -29,15 +29,15 @@
                     <td th:text="${#numbers.formatCurrency(purchaseOrderLine.itemCost.cost)}">Otto</td>
                     <td th:text="${purchaseOrderLine.qty}">Otto</td>
                     <td th:text="${#numbers.formatCurrency(purchaseOrderLine.subtotal)}">Otto</td>
-                    <!-- TODO: Adds button to delete sales order (first: implement sales order CRUD controll) -->
+                    <!-- TODO：添加删除采购订单按钮（首先需要实现采购订单 CRUD 控制器） -->
                 </tr>
         </tbody>
     </table>
-    <h3 class="text-center" th:text="|Total ${#numbers.formatCurrency(purchaseOrder.getTotal())}|"></h3>
+    <h3 class="text-center" th:text="|合计 ${#numbers.formatCurrency(purchaseOrder.getTotal())}|"></h3>
 </div>
 <div class="container my-3">
     <a th:href="@{/purchase-orders}"
-        class="btn btn-outline-secondary col-12">Back</a>
+        class="btn btn-outline-secondary col-12">返回</a>
 </div>
 
 <!-- Header fragment -->
