@@ -1,23 +1,23 @@
-<!-- Header -->
+<!-- 页面头部 -->
 <!-- Header fragment -->
 <div th:insert="~{fragments/header :: header}"></div>
 <!-- Navbar fragment -->
 <div th:insert="~{fragments/navbar :: navbar}"></div>
 
 <div class="container">
-    <!-- Page headers -->
-    <h1 class="my-3 text-center" th:text="|Picking Job: ${pickingJob.id}|">Picking OJobrder</h1>
-    <h3 class="my-3 text-center" th:text="|Customer: ${pickingJob.salesOrder.customer.name}|">Customer</h3>
-    <h3 class="my-3 text-center" th:text="|Date: ${#temporals.monthNameShort(pickingJob.date)} ${#temporals.format(pickingJob.date, ' dd, yyyy')}|">Date</h3>
-    <!-- Customer list as table -->
+    <!-- 页面标题 -->
+    <h1 class="my-3 text-center" th:text="|拣货任务：${pickingJob.id}|">拣货任务</h1>
+    <h3 class="my-3 text-center" th:text="|客户：${pickingJob.salesOrder.customer.name}|">客户</h3>
+    <h3 class="my-3 text-center" th:text="|日期：${#temporals.monthNameShort(pickingJob.date)} ${#temporals.format(pickingJob.date, ' dd, yyyy')}|">日期</h3>
+    <!-- 拣货任务明细表格 -->
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">Item</th>
-                <th scope="col">Description</th>
-                <th scope="col">To pick</th>
-                <th scope="col">Bin</th>
+                <th scope="col">序号</th>
+                <th scope="col">商品</th>
+                <th scope="col">描述</th>
+                <th scope="col">待拣货数量</th>
+                <th scope="col">库位</th>
             </tr>
         </thead>
         <tbody>
@@ -27,8 +27,8 @@
                     <td th:text="${pickingJobLine.item.description}">Otto</td>
                     <td th:text="${pickingJobLine.qtyToPick}">Otto</td>
                     <td th:if="${warehouseSections[__${pjStat.index}__] != null}" th:text="${warehouseSections[__${pjStat.index}__].getWarehouseSection()}">Otto</td>
-                    <td th:unless="${warehouseSections[__${pjStat.index}__] != null}" th:text="|Out-of-stock|">Otto</td>
-                    <!-- TODO: Adds button to delete sales order (first: implement sales order CRUD controll) -->
+                    <td th:unless="${warehouseSections[__${pjStat.index}__] != null}" th:text="|缺货|">Otto</td>
+                    <!-- TODO：添加删除销售订单明细的按钮 -->
                 </tr>
         </tbody>
     </table>
@@ -36,8 +36,8 @@
 
 <div class="container my-3">
     <a th:href="@{/picking-jobs}"
-        class="btn btn-outline-secondary col-12">Back</a>
+        class="btn btn-outline-secondary col-12">返回</a>
 </div>
 
-<!-- Header fragment -->
+<!-- Footer fragment -->
 <div th:insert="~{fragments/footer :: footer}"></div>
