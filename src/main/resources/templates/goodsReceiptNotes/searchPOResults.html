@@ -1,23 +1,23 @@
-<!-- Header -->
+<!-- 页面头部 -->
 <!-- Header fragment -->
 <div th:insert="~{fragments/header :: header}"></div>
-<!-- Navbar fragment -->
+<!-- 导航栏片段 -->
 <div th:insert="~{fragments/navbar :: navbar}"></div>
 
 <div class="container">
-    <!-- Page headers -->
-    <h1 class="my-3" th:text="|Purchase Order|">Customer List</h1>
-    <!-- Customer list as table -->
+    <!-- 页面标题 -->
+    <h1 class="my-3" th:text="|采购订单|">采购订单</h1>
+    <!-- 采购订单列表 -->
     <div th:if="${purchaseOrder == null}">
-        <h3 class="my-3">No matching Purchase Orders found</h3>
+        <h3 class="my-3">未找到匹配的采购订单</h3>
     </div>
     <table th:unless="${purchaseOrder == null}" class="table">
         <thead>
             <tr>
-                <th scope="col">Date</th>
-                <th scope="col">Purchase Order</th>
-                <th scope="col">Total</th>
-                <th scope="col">Details</th>
+                <th scope="col">日期</th>
+                <th scope="col">采购订单</th>
+                <th scope="col">合计</th>
+                <th scope="col">详情</th>
                 <th scope="col"></th>
             </tr>
         </thead>
@@ -26,19 +26,19 @@
                 <th scope="row" th:text="|${#temporals.monthNameShort(purchaseOrder.date)} ${#temporals.format(purchaseOrder.date, ' dd, yyyy')}|">1</th>
                 <td th:text="${purchaseOrder.id}">Mark</td>
                 <td th:text="${#numbers.formatCurrency(purchaseOrder.total)}">Otto</td>
-                <td><a th:href="@{/purchase-orders/{orderId}(orderId=${purchaseOrder.id})}" class="btn btn-outline-secondary">Details</a></td>
+                <td><a th:href="@{/purchase-orders/{orderId}(orderId=${purchaseOrder.id})}" class="btn btn-outline-secondary">详情</a></td>
                 <div class="update" th:if="${purchaseOrder.getStatus().getPk() == 0}">
-                    <td><a th:href="@{|/goods-receipt-notes/${purchaseOrder.id}/receive|}" class="btn btn-outline-secondary">Receive</a></td>
+                    <td><a th:href="@{|/goods-receipt-notes/${purchaseOrder.id}/receive|}" class="btn btn-outline-secondary">收货</a></td>
                 </div>
                 <div class="update" th:unless="${purchaseOrder.getStatus().getPk() == 0}">
-                    <td>Received</td>
+                    <td>已收货</td>
                 </div>
             </tr>
         </tbody>
     </table>
-    <a th:href="@{|/goods-receipt-notes/search-purchase-order|}" class="btn btn-outline-secondary">Back</a>
+    <a th:href="@{|/goods-receipt-notes/search-purchase-order|}" class="btn btn-outline-secondary">返回</a>
 </div>
 
 
-<!-- Header fragment -->
+<!-- 页脚片段 -->
 <div th:insert="~{fragments/footer :: footer}"></div>
