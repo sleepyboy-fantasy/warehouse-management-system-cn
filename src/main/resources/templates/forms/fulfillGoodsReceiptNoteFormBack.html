@@ -1,34 +1,34 @@
-<!-- Header -->
+<!-- 页面头部 -->
 <!-- Header fragment -->
 <div th:insert="~{fragments/header :: header}"></div>
 <!-- Navbar fragment -->
 <div th:insert="~{fragments/navbar :: navbar}"></div>
 
 <div class="container">
-    <!-- Page headers -->
-    <h1 class="my-3 text-center" th:text="|Vendor: ${goodsReceiptNote.purchaseOrder.vendor.name}|">Vendor</h1>
-    <!-- Customer list as table -->
+    <!-- 页面标题 -->
+    <h1 class="my-3 text-center" th:text="|供应商：${goodsReceiptNote.purchaseOrder.vendor.name}|">供应商</h1>
+    <!-- 收货单明细表单 -->
     <form action="#" th:action="@{/goods-receipt-note/fulfill-job/{goodsReceiptNoteId}(goodsReceiptNoteId=${goodsReceiptNote.id})}"
         th:object="${goodsReceiptNoteDto}" method="post" class="row g-3 needs-validation" novalidate>
         <table class="table">
             <div class="col-md-6">
-                <label for="purchaseOrderId" class="form-label">Purchase Order</label>
+                <label for="purchaseOrderId" class="form-label">采购订单</label>
                 <input class="form-control" type="text" id="purchaseOrderId" th:field="*{purchaseOrderId}" disabled readonly
                     name="salesOrder">
             </div>
             <div class="col-md-6">
-                <label for="date" class="form-label">Date</label>
+                <label for="date" class="form-label">日期</label>
                 <input class="form-control" type="text" id="date" th:field="*{date}" disabled readonly name="date">
             </div>
             <thead>
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Item</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">To Receive</th>
-                    <th scope="col">Bin</th>
-                    <th scope="col">Damaged?</th>
-                    <th scope="col">Qty</th>
+                    <th scope="col">序号</th>
+                    <th scope="col">商品</th>
+                    <th scope="col">描述</th>
+                    <th scope="col">待收货数量</th>
+                    <th scope="col">库位</th>
+                    <th scope="col">是否损坏</th>
+                    <th scope="col">数量</th>
                 </tr>
             </thead>
             <tbody>
@@ -40,9 +40,9 @@
                     <td th:if="${selectedWarehouseSections.size() > 0}">
                         <select class="form-select"
                             th:field="*{goodsReceiptNoteLines[__${grnStat.index}__].warehouseSectionId}"
-                            aria-label="Default select example" th:errorclass="fieldError" id="warehouseSectionId"
+                            aria-label="默认选择示例" th:errorclass="fieldError" id="warehouseSectionId"
                             required name="warehouseSectionId">
-                            <option value="" selected disable hidden>Choose...</option>
+                            <option value="" selected disable hidden>请选择...</option>
                             <option th:each="warehouseSection: ${warehouseSections}"
                                 th:text="|${warehouseSection.sectionNumber}|"
                                 th:value="${warehouseSection.id}">Two
@@ -52,10 +52,10 @@
                     <td>
                         <select class="form-select"
                             th:field="*{goodsReceiptNoteLines[__${grnStat.index}__].damaged}"
-                            aria-label="Default select example" th:errorclass="fieldError" id="damaged"
+                            aria-label="默认选择示例" th:errorclass="fieldError" id="damaged"
                             required name="damaged">
-                            <option th:value="${1}">True</option>
-                            <option th:value="${0}">False</option>
+                            <option th:value="${1}">是</option>
+                            <option th:value="${0}">否</option>
                         </select>
                     </td>
                     <td>
@@ -63,13 +63,15 @@
                             th:field="*{goodsReceiptNoteLines[__${grnStat.index}__].qty}" class="form-control"
                             id="qty" value="1">
                     </td>
-                    <!-- TODO: Adds button to delete sales order (first: implement sales order CRUD controll) -->
+                    <!-- TODO：添加删除收货单明细的按钮 -->
                 </tr>
             </tbody>
         </table>
-        <button type="submit" class="btn btn-dark col-12">Fulfill Order</button>
+        <button type="submit" class="btn btn-dark col-12">完成收货</button>
     </form>
 </div>
 
-<!-- Header fragment -->
+<!-- Footer fragment -->
 <div th:insert="~{fragments/footer :: footer}"></div>
+
+</html>

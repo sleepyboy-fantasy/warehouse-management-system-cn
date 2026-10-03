@@ -1,4 +1,4 @@
-<!-- Header -->
+<!-- 页面头部 -->
 <!-- Header fragment -->
 <div th:insert="~{fragments/header :: header}"></div>
 <!-- Navbar fragment -->
@@ -8,37 +8,37 @@
     <div class="container">
         <div class="container mx-auto col-md-6" id="new-customer-form">
             <div id="header">
-                <h1 class="mt-3">New Item</h1>
+                <h1 class="mt-3">新增商品</h1>
             </div>
 
             <div id="newCustomerForm">
-                <!-- SALE ORDER FORM -->
+                <!-- 销售订单表单 -->
                 <form action="#" th:action="@{/items/new-item}" th:object="${item}"
                     method="post" class="row g-3 needs-validation" novalidate>
-                    <!-- FROM/TO INPUTS FIELDS-->
+                    <!-- 输入字段 -->
                     <div class="col-md-4">
-                        <label for="state" class="form-label">Vendor</label>
-                        <!-- Drop down list of vendor IDs -->
-                        <select class="form-select" th:field="*{vendors}" aria-label="Default select example"
+                        <label for="state" class="form-label">供应商</label>
+                        <!-- 供应商编号下拉列表 -->
+                        <select class="form-select" th:field="*{vendors}" aria-label="默认选择示例"
                             th:errorclass="fieldError" id="state" required name="state">
-                            <option value="" selected disable hidden>Choose...</option>
+                            <option value="" selected disable hidden>请选择...</option>
                             <option th:each="vendor : ${vendors}" th:text="|${vendor.id} - ${vendor.name}|"
                                 th:value="${vendor.id}">03 - Microsoft
                             </option>
                         </select>
                     </div>
                     <div class="col-md-4">
-                        <label for="sku" class="form-label">Sku</label>
+                        <label for="sku" class="form-label">商品编号</label>
                         <input class="form-control" type="text" id="sku">
                     </div>
                     <div class="col-md-12">
-                        <label for="description" class="form-label">Description</label>
+                        <label for="description" class="form-label">商品描述</label>
                         <input class="form-control" type="text" id="description">
                     </div>
-                    <!-- TODO: -> ADD a form to add new prices and costs -->
+                    <!-- TODO：添加新增商品价格和成本的表单 -->
                     <div class="col-12">
                         <div class="d-grid mx-auto">
-                            <button type="submit" class="btn btn-dark col-12">Add Item</button>
+                            <button type="submit" class="btn btn-dark col-12">添加商品</button>
                         </div>
                     </div>
                 </form>
@@ -48,18 +48,18 @@
 </div>
 <script>
 
-    //JAVASCRIPT SNIPPET TO PROVIDES DATA VALIDATION ON FRONT END WHEN FORM IS SUBMITTED
-    //IT WILL SUPPLY A MESSAGE BELOW THE BLANK INPUT FIELD
+    // JavaScript 片段：在提交表单时进行前端数据校验
+    // 当输入字段为空时，在字段下方显示提示信息
     (function () {
         'use strict'
 
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        // it checks every input field that its class attribute contains "needs-validation"
+        // 获取所有需要应用 Bootstrap 自定义校验样式的表单
+        // 检查每个表单的 class 属性是否包含 "needs-validation"
 
-        //TODO: MOVE JS TO SEPARTE FILE
+        // TODO：将 JavaScript 移动到独立文件
         var forms = document.querySelectorAll('.needs-validation')
 
-        // Loop over them and prevent submission
+        // 遍历表单并阻止无效提交
         Array.prototype.slice.call(forms)
             .forEach(function (form) {
                 form.addEventListener('submit', function (event) {
@@ -77,5 +77,3 @@
 
 <!-- Footer fragment -->
 <div th:insert="~{fragments/footer :: footer}"></div>
-
-
