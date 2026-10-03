@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
 <div th:insert="~{fragments/header :: header}"></div>
 <div th:insert="~{fragments/navbar :: navbar}"></div>
 
 <div class="container">
     <div class="col-md-6 mx-auto">
-        <h1 class="my-3">Edit user</h1>
+        <h1 class="my-3">编辑用户</h1>
 
         <div th:if="${#fields.hasGlobalErrors()}" class="alert alert-danger">
             <p th:each="err : ${#fields.globalErrors()}" th:text="${err}"></p>
@@ -13,40 +13,40 @@
 
         <form th:action="@{'/admin/users/' + ${userForm.id} + '/update'}" th:object="${userForm}" method="post" class="row g-3 needs-validation" novalidate>
             <div class="col-md-12">
-                <label for="username" class="form-label">Username</label>
+                <label for="username" class="form-label">用户名</label>
                 <input class="form-control" th:field="*{username}" type="text" id="username" required>
                 <div class="text-danger small" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
             </div>
             <div class="col-md-12">
-                <label for="email" class="form-label">Email</label>
+                <label for="email" class="form-label">邮箱</label>
                 <input class="form-control" th:field="*{email}" type="email" id="email" required>
                 <div class="text-danger small" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
             </div>
             <div class="col-md-12">
-                <label for="password" class="form-label">New password</label>
+                <label for="password" class="form-label">新密码</label>
                 <input class="form-control" th:field="*{password}" type="password" id="password" minlength="8">
-                <div class="form-text">Leave blank to keep current password.</div>
+                <div class="form-text">留空则保持当前密码不变。</div>
                 <div class="text-danger small" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
             </div>
             <div class="col-md-6">
-                <label for="role" class="form-label">Role</label>
+                <label for="role" class="form-label">角色</label>
                 <select class="form-select" th:field="*{role}" id="role">
                     <option th:each="r : ${roles}" th:value="${r}" th:text="${r}"></option>
                 </select>
             </div>
             <div class="col-md-3 form-check pt-4">
                 <input class="form-check-input" th:field="*{enabled}" type="checkbox" id="enabled">
-                <label class="form-check-label" for="enabled">Enabled</label>
+                <label class="form-check-label" for="enabled">启用</label>
             </div>
             <div class="col-md-3 form-check pt-4">
                 <input class="form-check-input" th:field="*{twoFactorEnabled}" type="checkbox" id="twoFactorEnabled">
-                <label class="form-check-label" for="twoFactorEnabled">2FA</label>
+                <label class="form-check-label" for="twoFactorEnabled">双因素认证</label>
             </div>
             <div class="col-12 d-grid">
-                <button type="submit" class="btn btn-dark">Save</button>
+                <button type="submit" class="btn btn-dark">保存</button>
             </div>
             <div class="col-12">
-                <a th:href="@{'/admin/users/' + ${userForm.id}}" class="btn btn-link">Back</a>
+                <a th:href="@{'/admin/users/' + ${userForm.id}}" class="btn btn-link">返回</a>
             </div>
         </form>
     </div>
