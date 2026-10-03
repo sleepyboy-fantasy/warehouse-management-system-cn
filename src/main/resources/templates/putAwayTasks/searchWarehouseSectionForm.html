@@ -1,32 +1,35 @@
-<!-- Header -->
+<!-- 页面头部 -->
 <!-- Header fragment -->
 <div th:insert="~{fragments/header :: header}"></div>
 <!-- Navbar fragment -->
 <div th:insert="~{fragments/navbar :: navbar}"></div>
 
 <div class="container">
-    <!-- Page headers -->
+    <!-- 页面内容 -->
     <div class="container col-md-6 mx-auto">
-        <!-- ALERTS TO PROVIDE USER FEEDBACK ON NOT FOUND PO -->
+        <!-- 未找到库位时显示提示 -->
         <div th:if="${param.notFound}">
             <div class="alert alert-info alert-dismissible fade show mt-3" role="alert">
-                Warehouse Section not found
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                未找到库位信息
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="关闭"></button>
             </div>
         </div>
-        <!-- ALERTS TO PROVIDE USER FEEDBACK ON SUCCESS PUT AWAY -->
+
+        <!-- 成功上架后显示提示 -->
         <div th:if="${param.putAway}">
             <div class="alert alert-info alert-success fade show mt-3" role="alert">
-                Stock successfully put away
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                库存已成功上架
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="关闭"></button>
             </div>
         </div>
-        <h1 class="my-3 text-center">Search Warehouse Section</h1>
-        <!-- Customer list as table -->
+
+        <h1 class="my-3 text-center">搜索仓库库位</h1>
+
+        <!-- 库位搜索表单 -->
         <form action="#" th:action="@{/put-aways/search-warehouse-section}" th:object="${searchWarehouseSectionDto}"
             method="post" class="row g-3 needs-validation" novalidate>
             <div class="col-12">
-                <label for="warehouseSection" class="form-label">Warehouse Section</label>
+                <label for="warehouseSection" class="form-label">仓库库位</label>
                 <input class="form-control" type="text" id="warehouseSection" th:field="*{warehouseSectionNumber}"
                     name="salesOrder" required
                     data-autocomplete-source="WAREHOUSE_SECTION"
@@ -34,11 +37,11 @@
                     data-autocomplete-fill-on-select="true"
                     autocomplete="off">
                 <div class="invalid-feedback">
-                    Please enter the Warehouse Section
+                    请输入仓库库位
                 </div>
             </div>
             <div class="col-12">
-                <button type="submit" class="btn btn-dark col-12">Search</button>
+                <button type="submit" class="btn btn-dark col-12">搜索</button>
             </div>
         </form>
     </div>
@@ -46,18 +49,18 @@
 
 <script>
 
-    //JAVASCRIPT SNIPPET TO PROVIDES DATA VALIDATION ON FRONT END WHEN FORM IS SUBMITTED
-    //IT WILL SUPPLY A MESSAGE BELOW THE BLANK INPUT FIELD
+    // JavaScript：表单提交时进行前端数据校验
+    // 当输入框为空或输入内容不符合要求时，在输入框下方显示提示信息
     (function () {
         'use strict'
 
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        // it checks every input field that its class attribute contains "needs-validation"
+        // 获取所有需要使用 Bootstrap 校验样式的表单
+        // 检查 class 属性中是否包含 "needs-validation"
 
-        //TODO: MOVE JS TO SEPARTE FILE
+        // TODO：将 JavaScript 移动到独立文件
         var forms = document.querySelectorAll('.needs-validation')
 
-        // Loop over them and prevent submission
+        // 遍历表单并阻止无效数据提交
         Array.prototype.slice.call(forms)
             .forEach(function (form) {
                 form.addEventListener('submit', function (event) {
@@ -72,5 +75,5 @@
     })()
 </script>
 
-<!-- Header fragment -->
+<!-- Footer fragment -->
 <div th:insert="~{fragments/footer :: footer}"></div>
