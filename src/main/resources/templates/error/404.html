@@ -1,20 +1,20 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <title>Page not found</title>
+    <title>页面未找到</title>
 </head>
 <body class="bg-light">
 <div class="container">
     <div class="col-md-6 mx-auto text-center" style="margin-top: 6rem;">
         <i class="bi bi-compass display-1 text-muted"></i>
         <h1 class="display-4 mt-3">404</h1>
-        <p class="lead">We couldn't find the page you were looking for.</p>
-        <p class="text-muted" th:if="${path}" th:text="'Tried: ' + ${path}"></p>
-        <a class="btn btn-dark mt-3" href="/">Back to dashboard</a>
+        <p class="lead">找不到您要访问的页面。</p>
+        <p class="text-muted" th:if="${path}" th:text="'尝试访问：' + ${path}"></p>
+        <a class="btn btn-dark mt-3" href="/">返回系统首页</a>
     </div>
 </div>
 </body>
