@@ -105,7 +105,7 @@
         <thead>
             <tr>
                 <th th:replace="~{fragments/pagination :: sortHeader(label='日期', property='date', page=${page}, baseUrl='/purchase-orders')}"></th>
-                <th th:replace="~{fragments/pagination :: sortHeader(label='采购订单', property='id', page=${page}, baseUrl='/purchase-orders')}"></th>
+                <th th:replace="~{fragments/pagination :: sortHeader(label='采购订单编号', property='id', page=${page}, baseUrl='/purchase-orders')}"></th>
                 <th th:replace="~{fragments/pagination :: sortHeader(label='供应商', property='vendor.name', page=${page}, baseUrl='/purchase-orders')}"></th>
                 <th scope="col">合计</th>
                 <th th:replace="~{fragments/pagination :: sortHeader(label='状态', property='status', page=${page}, baseUrl='/purchase-orders')}"></th>
