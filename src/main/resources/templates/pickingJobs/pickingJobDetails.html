@@ -6,7 +6,7 @@
 
 <div class="container">
     <!-- 页面标题 -->
-    <h1 class="my-3 text-center" th:text="|拣货任务：${pickingJob.id}|">拣货任务</h1>
+    <h1 class="my-3 text-center" th:text="|拣货任务编号：${pickingJob.id}|">拣货任务编号</h1>
     <h3 class="my-3 text-center" th:text="|客户：${pickingJob.salesOrder.customer.name}|">客户</h3>
     <h3 class="my-3 text-center" th:text="|日期：${#temporals.monthNameShort(pickingJob.date)} ${#temporals.format(pickingJob.date, ' dd, yyyy')}|">日期</h3>
     <!-- 拣货任务明细表格 -->
