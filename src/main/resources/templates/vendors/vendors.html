@@ -78,10 +78,10 @@
             <tr>
                 <th th:replace="~{fragments/pagination :: sortHeader(label='编号', property='id', page=${page}, baseUrl='/vendors')}"></th>
                 <th th:replace="~{fragments/pagination :: sortHeader(label='供应商名称', property='name', page=${page}, baseUrl='/vendors')}"></th>
-                <th th:replace="~{fragments/pagination :: sortHeader(label='街道地址', property='street', page=${page}, baseUrl='/vendors')}"></th>
-                <th th:replace="~{fragments/pagination :: sortHeader(label='城市', property='city', page=${page}, baseUrl='/vendors')}"></th>
-                <th th:replace="~{fragments/pagination :: sortHeader(label='地区', property='state', page=${page}, baseUrl='/vendors')}"></th>
-                <th th:replace="~{fragments/pagination :: sortHeader(label='邮编', property='zipcode', page=${page}, baseUrl='/vendors')}"></th>
+                <th th:replace="~{fragments/pagination :: sortHeader(label='详细地址', property='street', page=${page}, baseUrl='/vendors')}"></th>
+                <th th:replace="~{fragments/pagination :: sortHeader(label='省', property='city', page=${page}, baseUrl='/vendors')}"></th>
+                <th th:replace="~{fragments/pagination :: sortHeader(label='市', property='state', page=${page}, baseUrl='/vendors')}"></th>
+                <th th:replace="~{fragments/pagination :: sortHeader(label='市/区/县', property='zipcode', page=${page}, baseUrl='/vendors')}"></th>
                 <th scope="col"></th>
                 <th scope="col"></th>
                 <th scope="col"></th>
