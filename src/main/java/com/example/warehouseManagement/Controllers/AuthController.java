@@ -58,7 +58,7 @@ public class AuthController {
 
     @GetMapping(LOGIN_PATH)
     public String loginPage(Model model) {
-        model.addAttribute("title", "Sign in");
+        model.addAttribute("title", "登录");
         return "auth/login";
     }
 
@@ -69,7 +69,7 @@ public class AuthController {
         if (session.getAttribute(TwoFactorAuthenticationSuccessHandler.PENDING_2FA_USERNAME) == null) {
             return "redirect:/login";
         }
-        model.addAttribute("title", "Verify");
+        model.addAttribute("title", "二次验证");
         model.addAttribute("twoFactor", new TwoFactorVerificationDto());
         return "auth/verify2fa";
     }
@@ -86,7 +86,7 @@ public class AuthController {
             return "redirect:/login";
         }
         if (binding.hasErrors()) {
-            model.addAttribute("title", "Verify");
+            model.addAttribute("title", "二次验证");
             return "auth/verify2fa";
         }
 
@@ -113,7 +113,7 @@ public class AuthController {
 
     @GetMapping(FORGOT_PASSWORD_PATH)
     public String forgotPasswordForm(Model model) {
-        model.addAttribute("title", "Forgot password");
+        model.addAttribute("title", "忘记密码");
         model.addAttribute("forgotPassword", new ForgotPasswordDto());
         return "auth/forgotPassword";
     }
@@ -123,7 +123,7 @@ public class AuthController {
                                        BindingResult binding,
                                        Model model) {
         if (binding.hasErrors()) {
-            model.addAttribute("title", "Forgot password");
+            model.addAttribute("title", "忘记密码");
             return "auth/forgotPassword";
         }
         // Always show the same banner — never leak whether the email exists.
@@ -144,7 +144,7 @@ public class AuthController {
         }
         ResetPasswordDto dto = new ResetPasswordDto();
         dto.setToken(token);
-        model.addAttribute("title", "Reset password");
+        model.addAttribute("title", "重置密码");
         model.addAttribute("resetPassword", dto);
         return "auth/resetPassword";
     }
@@ -154,12 +154,12 @@ public class AuthController {
                                       BindingResult binding,
                                       Model model) {
         if (binding.hasErrors()) {
-            model.addAttribute("title", "Reset password");
+            model.addAttribute("title", "重置密码");
             return "auth/resetPassword";
         }
         if (!dto.getPassword().equals(dto.getConfirmPassword())) {
             binding.rejectValue("confirmPassword", "mismatch", "Passwords do not match");
-            model.addAttribute("title", "Reset password");
+            model.addAttribute("title", "重置密码");
             return "auth/resetPassword";
         }
         User user = userService.findByValidResetToken(dto.getToken()).orElse(null);

@@ -68,7 +68,7 @@ public class GoodsReceiptNoteController {
             @ModelAttribute("criteria") AdvancedGrnSearchCriteria criteria,
             @PageableDefault(size = 25, sort = "date", direction = Sort.Direction.DESC) Pageable pageable,
             Model model) {
-        model.addAttribute("title", "Goods Receipt Notes");
+        model.addAttribute("title", "收货单管理");
         model.addAttribute("page", goodsReceiptNoteService.findAdvanced(criteria, pageable));
         model.addAttribute("textModes", TextMode.values());
         model.addAttribute("statuses", GrnStatus.values());
@@ -95,7 +95,7 @@ public class GoodsReceiptNoteController {
                                               org.springframework.data.domain.Pageable pageable,
                                       Model model) {
         model.addAttribute("purchaseOrderNumberDto", new PurchaseOrderNumberDto());
-        model.addAttribute("title", "Search Purchase Order");
+        model.addAttribute("title", "查询采购订单");
         model.addAttribute("purchaseOrders", purchaseOrderService.findAllPendingPurchaseOrder());
         model.addAttribute("textModes", com.example.warehouseManagement.Domains.DTOs.TextMode.values());
         model.addAttribute("statuses", com.example.warehouseManagement.Domains.PurchaseOrder.PoStatus.values());
@@ -114,7 +114,7 @@ public class GoodsReceiptNoteController {
         // note object. Otherwise, redirects to the goods receipt note list page with
         // an error message.
         if (goodsReceiptNote.isPresent()) {
-            model.addAttribute("title", "Goods Receipt Note Details");
+            model.addAttribute("title", "收货单详情");
             model.addAttribute("goodsReceiptNote", goodsReceiptNote.get());
             model.addAttribute("counter", new Counter());
             return "goodsReceiptNotes/goodsReceiptNoteDetails";
@@ -129,7 +129,7 @@ public class GoodsReceiptNoteController {
         Optional<PurchaseOrder> purchaseOrder = purchaseOrderService.findById(purchaseOrderId);
         if (purchaseOrder.isPresent()) {
             model.addAttribute("purchaseOrder", purchaseOrder.get());
-            model.addAttribute("title", "Search Purchase Order");
+            model.addAttribute("title", "查询采购订单");
             return "goodsReceiptNotes/searchPOResults";
         } else {
             return "redirect:/goods-receipt-notes/search-purchase-order?notFound";
@@ -153,7 +153,7 @@ public class GoodsReceiptNoteController {
             // warehouse section IDs, the warehouse sections, and the title.
             model.addAttribute("goodsReceiptNoteDto", goodsReceiptNoteDto);
             model.addAttribute("purchaseOrder", purchaseOrder.get());
-            model.addAttribute("title", "Receiving Shipment");
+            model.addAttribute("title", "完成收货");
             model.addAttribute("counter", new Counter());
             // Returns the name of the view template for the fulfill goods receipt note
             // form.

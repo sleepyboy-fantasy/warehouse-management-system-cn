@@ -48,7 +48,7 @@ public class SearchController {
                          @RequestParam(name = "mode", defaultValue = "CONTAINS") Mode mode,
                          Model model) {
         String trimmed = query == null ? "" : query.trim();
-        model.addAttribute("title", "Search");
+        model.addAttribute("title", "搜索");
         model.addAttribute("query", trimmed);
         model.addAttribute("mode", mode);
 

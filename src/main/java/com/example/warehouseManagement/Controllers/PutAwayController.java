@@ -50,7 +50,7 @@ public class PutAwayController {
         model.addAttribute("stocks", stockService.findStocksOnFloor());
         model.addAttribute("wrapper", wrapper);
         model.addAttribute("warehouseSections", warehouseSectionService.findAll());
-        model.addAttribute("title", "Put Aways Tasks On Floor");
+        model.addAttribute("title", "上架任务");
         return "putAwayTasks/putAwayTasksOnFloor";
     }
 
@@ -68,7 +68,7 @@ public class PutAwayController {
     @GetMapping(SEARCH_WAREHOUSE_SECTION_PATH)
     public String searchWarehouseSection(Model model) {
         model.addAttribute("searchWarehouseSectionDto", new SearchWarehouseSectionDto());
-        model.addAttribute("title", "Search Warehouse Section");
+        model.addAttribute("title", "查询仓库库位");
         return "putAwayTasks/searchWarehouseSectionForm";
     }
 
@@ -87,7 +87,7 @@ public class PutAwayController {
             model.addAttribute("warehouseSectionId", targetWarehouseSection.get().getId());
             model.addAttribute("wrapper", wrapper);
             model.addAttribute("warehouseSections", warehouseSectionService.findAll());
-            model.addAttribute("title", "Put Aways Tasks");
+            model.addAttribute("title", "上架任务");
             return "putAwayTasks/putAwayTasks";
         } else {
             return "redirect:/put-aways/search-warehouse-section?notFound";

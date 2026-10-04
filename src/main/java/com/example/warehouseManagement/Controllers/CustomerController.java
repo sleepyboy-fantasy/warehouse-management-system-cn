@@ -56,7 +56,7 @@ public class CustomerController {
             @PageableDefault(size = 25, sort = "name", direction = Sort.Direction.ASC) Pageable pageable,
             Model model) {
         model.addAttribute("page", customerService.findAdvanced(criteria, pageable));
-        model.addAttribute("title", "Customers");
+        model.addAttribute("title", "客户管理");
         model.addAttribute("textModes", TextMode.values());
         return "customers/customers";
     }
@@ -114,7 +114,7 @@ public class CustomerController {
 
         // Adding the customer and a title attribute to the model
         model.addAttribute("customer", customer.get());
-        model.addAttribute("title", "Customer Details");
+        model.addAttribute("title", "客户详情");
         return "customers/customerDetails"; // Returning the view template name
     }
 
@@ -135,7 +135,7 @@ public class CustomerController {
         // Adding the customer and a title attribute to the model
         model.addAttribute("customer", customer.get());
         model.addAttribute("states", StatePool.getStates());
-        model.addAttribute("title", "Update Customer");
+        model.addAttribute("title", "编辑客户");
         return "customers/updateCustomerForm"; // Returning the view template name
     }
 

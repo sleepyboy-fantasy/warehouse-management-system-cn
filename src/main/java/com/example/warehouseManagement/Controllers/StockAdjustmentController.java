@@ -41,14 +41,14 @@ public class StockAdjustmentController {
     @GetMapping
     public String list(@PageableDefault(size = 25, sort = "adjustmentDate", direction = Sort.Direction.DESC) Pageable pageable,
                        Model model) {
-        model.addAttribute("title", "Stock Adjustments");
+        model.addAttribute("title", "库存调整");
         model.addAttribute("page", stockAdjustmentService.findAll(pageable));
         return "stockAdjustments/stockAdjustments";
     }
 
     @GetMapping(NEW_PATH)
     public String newForm(Model model) {
-        model.addAttribute("title", "New Adjustment");
+        model.addAttribute("title", "新增库存调整");
         model.addAttribute("stockAdjustment",
                 StockAdjustment.builder().adjustmentDate(LocalDate.now()).type(AdjustmentType.CYCLE_COUNT).build());
         model.addAttribute("items", itemService.findAll());

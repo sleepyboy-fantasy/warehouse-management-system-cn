@@ -64,7 +64,7 @@ public class ItemController {
             @PageableDefault(size = 25, sort = "sku", direction = Sort.Direction.ASC) Pageable pageable,
             Model model) {
         model.addAttribute("page", itemService.findAdvanced(criteria, pageable));
-        model.addAttribute("title", "Items");
+        model.addAttribute("title", "物品管理");
         model.addAttribute("textModes", TextMode.values());
         return "items/items";
     }
@@ -126,7 +126,7 @@ public class ItemController {
 
         // Adding the item and a title attribute to the model
         model.addAttribute("item", item.get());
-        model.addAttribute("title", "Item Details");
+        model.addAttribute("title", "物品详情");
         return "items/itemDetails"; // Returning the view template name
     }
 
@@ -147,7 +147,7 @@ public class ItemController {
         // Adding the item and a title attribute to the model
         model.addAttribute("item", item.get());
         model.addAttribute("itemDto", new ItemDto());
-        model.addAttribute("title", "Update Item");
+        model.addAttribute("title", "编辑物品");
         return "items/updateItemForm"; // Returning the view template name
     }
 

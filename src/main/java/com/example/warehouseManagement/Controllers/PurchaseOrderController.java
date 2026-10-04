@@ -143,7 +143,7 @@ public class PurchaseOrderController {
             @ModelAttribute("criteria") AdvancedPoSearchCriteria criteria,
             @PageableDefault(size = 25, sort = "date", direction = Sort.Direction.DESC) Pageable pageable,
             Model model) {
-        model.addAttribute("title", "Purchase Orders");
+        model.addAttribute("title", "采购订单");
         model.addAttribute("vendors", vendorService.findAll());
         model.addAttribute("page", purchaseOrderService.findAdvanced(criteria, pageable));
         model.addAttribute("textModes", TextMode.values());
@@ -164,7 +164,7 @@ public class PurchaseOrderController {
             @ModelAttribute("criteria") AdvancedPoSearchCriteria criteria,
             @PageableDefault(size = 25, sort = "date", direction = Sort.Direction.DESC) Pageable pageable,
             Model model) {
-        model.addAttribute("title", "Purchase Orders");
+        model.addAttribute("title", "采购订单详情");
         model.addAttribute("vendors", vendorService.findAll());
         model.addAttribute("page", purchaseOrderService.findPendingPage(pageable));
         model.addAttribute("textModes", TextMode.values());
@@ -187,7 +187,7 @@ public class PurchaseOrderController {
         // to
         // the model and returns the name of the view template to render.
         if (order.isPresent()) {
-            model.addAttribute("title", "Purchase Order Details");
+            model.addAttribute("title", "采购订单详情");
             model.addAttribute("purchaseOrder", order.get());
             model.addAttribute("counter", new Counter());
             return "purchaseOrders/purchaseOrderDetails";
@@ -214,7 +214,7 @@ public class PurchaseOrderController {
         // If the purchase order is found, add it to the model and return the name of the
         // view to render.
         if (order.isPresent()) {
-            model.addAttribute("title", "Purchase Orders");
+            model.addAttribute("title", "采购订单");
             model.addAttribute("vendors", vendorService.findAll());
             model.addAttribute("purchaseOrder", order.get());
             model.addAttribute("persistedOrder", order.get());

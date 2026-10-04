@@ -148,7 +148,7 @@ public class SalesOrderController {
             @ModelAttribute("criteria") AdvancedSalesOrderSearchCriteria criteria,
             @PageableDefault(size = 25, sort = "date", direction = Sort.Direction.DESC) Pageable pageable,
             Model model) {
-        model.addAttribute("title", "Sales Orders");
+        model.addAttribute("title", "销售订单");
         model.addAttribute("customers", customerService.findAll());
         model.addAttribute("page", salesOrderService.findAdvanced(criteria, pageable));
         model.addAttribute("textModes", TextMode.values());
@@ -168,7 +168,7 @@ public class SalesOrderController {
             @ModelAttribute("criteria") AdvancedSalesOrderSearchCriteria criteria,
             @PageableDefault(size = 25, sort = "date", direction = Sort.Direction.DESC) Pageable pageable,
             Model model) {
-        model.addAttribute("title", "Sales Orders");
+        model.addAttribute("title", "销售订单");
         model.addAttribute("customers", customerService.findAll());
         model.addAttribute("page", salesOrderService.findPendingPage(pageable));
         model.addAttribute("textModes", TextMode.values());
@@ -192,7 +192,7 @@ public class SalesOrderController {
         // If the sales order is found, add it to the model and return the name of the
         // view to render.
         if (order.isPresent()) {
-            model.addAttribute("title", "Sales Orders");
+            model.addAttribute("title", "销售订单");
             model.addAttribute("salesOrder", order.get());
             model.addAttribute("counter", new Counter());
             return "salesOrders/salesOrderDetails";
@@ -218,7 +218,7 @@ public class SalesOrderController {
         // If the sales order is found, add it to the model and return the name of the
         // view to render.
         if (order.isPresent()) {
-            model.addAttribute("title", "Sales Orders");
+            model.addAttribute("title", "销售订单");
             model.addAttribute("customers", customerService.findAll());
             model.addAttribute("salesOrder", order.get());
             model.addAttribute("persistedOrder", order.get());

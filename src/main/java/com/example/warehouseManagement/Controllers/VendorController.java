@@ -56,7 +56,7 @@ public class VendorController {
             @PageableDefault(size = 25, sort = "name", direction = Sort.Direction.ASC) Pageable pageable,
             Model model) {
         model.addAttribute("page", vendorService.findAdvanced(criteria, pageable));
-        model.addAttribute("title", "Vendors");
+        model.addAttribute("title", "供应商管理");
         model.addAttribute("textModes", TextMode.values());
         return "vendors/vendors";
     }
@@ -114,7 +114,7 @@ public class VendorController {
 
         // Adding the vendor and a title attribute to the model
         model.addAttribute("vendor", vendor.get());
-        model.addAttribute("title", "Vendor Details");
+        model.addAttribute("title", "供应商详情");
         return "vendors/vendorDetails"; // Returning the view template name
     }
 
@@ -135,7 +135,7 @@ public class VendorController {
         // Adding the vendor and a title attribute to the model
         model.addAttribute("vendor", vendor.get());
         model.addAttribute("states", StatePool.getStates());
-        model.addAttribute("title", "Update vendor");
+        model.addAttribute("title", "编辑供应商");
         return "vendors/updateVendorForm"; // Returning the view template name
     }
 

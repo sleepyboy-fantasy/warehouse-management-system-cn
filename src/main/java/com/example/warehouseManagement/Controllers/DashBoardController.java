@@ -39,7 +39,7 @@ public class DashBoardController {
 
     @GetMapping
     public String getDashBoard(Model model) {
-        model.addAttribute("title", "Dashboard");
+        model.addAttribute("title", "首页");
         // Row 1 — KPI cards
         model.addAttribute("kpiSo",          salesOrderService.findOpenSalesOrdersKpi());
         model.addAttribute("kpiPo",          purchaseOrderService.findOpenPurchaseOrdersKpi());

@@ -106,7 +106,7 @@ public class ItemPriceController {
 
         // Adding the itemPrice and a title attribute to the model
         model.addAttribute("itemPrice", itemPrice.get());
-        model.addAttribute("title", "Item Price Details");
+        model.addAttribute("title", "物品价格详情");
         return "itemPrices/itemPriceDetails"; // Returning the view template name
     }
 
@@ -132,7 +132,7 @@ public class ItemPriceController {
         // Adding the itemPrice and a title attribute to the model
         model.addAttribute("item", item.get());
         model.addAttribute("itemPrice", itemPrice.get());
-        model.addAttribute("title", "Update Price Details");
+        model.addAttribute("title", "编辑物品价格");
         return "itemPrices/itemPriceUpdateForm"; // Returning the view template name
     }
 

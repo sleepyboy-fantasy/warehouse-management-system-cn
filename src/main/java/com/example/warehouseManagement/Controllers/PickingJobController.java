@@ -70,7 +70,7 @@ public class PickingJobController {
             @ModelAttribute("criteria") AdvancedPickingJobSearchCriteria criteria,
             @PageableDefault(size = 25, sort = "date", direction = Sort.Direction.DESC) Pageable pageable,
             Model model) {
-        model.addAttribute("title", "Picking Jobs");
+        model.addAttribute("title", "拣货任务");
         model.addAttribute("page", pickingJobService.findAdvanced(criteria, pageable));
         model.addAttribute("textModes", TextMode.values());
         model.addAttribute("statuses", PjStatus.values());
@@ -90,7 +90,7 @@ public class PickingJobController {
         if (pickingJob.isPresent()) {
             model.addAttribute("warehouseSections", warehouseSectionService
                     .findWarehouseSectionSuggestionBySalesOrder(pickingJob.get().getSalesOrder()));
-            model.addAttribute("title", "Picking Job Details");
+            model.addAttribute("title", "拣货任务详情");
             model.addAttribute("pickingJob", pickingJob.get());
             model.addAttribute("counter", new Counter());
             return "pickingJobs/pickingJobDetails";
@@ -125,7 +125,7 @@ public class PickingJobController {
             model.addAttribute("pickingJobDto", pickingJobDto);
             model.addAttribute("warehouseSections",
                     warehouseSectionService.findBySalesOrder(pickingJob.get().getSalesOrder()));
-            model.addAttribute("title", "Picking Order");
+            model.addAttribute("title", "拣货任务");
             model.addAttribute("pickingJob", pickingJob.get());
             model.addAttribute("counter", new Counter());
             // Returns the name of the view template for the fulfill picking job form.

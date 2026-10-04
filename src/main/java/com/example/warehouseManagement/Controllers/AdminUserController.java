@@ -38,14 +38,14 @@ public class AdminUserController {
 
     @GetMapping
     public String listUsers(Model model) {
-        model.addAttribute("title", "Users");
+        model.addAttribute("title", "用户管理");
         model.addAttribute("users", userService.findAll());
         return "admin/users";
     }
 
     @GetMapping(NEW_USER_PATH)
     public String newUserForm(Model model) {
-        model.addAttribute("title", "New user");
+        model.addAttribute("title", "新增用户");
         model.addAttribute("userForm", UserFormDto.builder().role(Role.USER).enabled(true).build());
         model.addAttribute("roles", Role.values());
         model.addAttribute("isCreate", true);
@@ -78,7 +78,7 @@ public class AdminUserController {
         if (user.isEmpty()) {
             return "redirect:/admin/users?notFound";
         }
-        model.addAttribute("title", "User");
+        model.addAttribute("title", "用户详情");
         model.addAttribute("user", user.get());
         return "admin/userDetails";
     }
@@ -98,7 +98,7 @@ public class AdminUserController {
                 .enabled(u.isEnabled())
                 .twoFactorEnabled(u.isTwoFactorEnabled())
                 .build();
-        model.addAttribute("title", "Edit user");
+        model.addAttribute("title", "编辑用户");
         model.addAttribute("userForm", dto);
         model.addAttribute("roles", Role.values());
         model.addAttribute("isCreate", false);
