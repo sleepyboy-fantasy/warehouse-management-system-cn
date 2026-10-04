@@ -1,22 +1,23 @@
-<!-- Header -->
+<!-- 页面头部 -->
 <!-- Header fragment -->
 <div th:insert="~{fragments/header :: header}"></div>
 <!-- Navbar fragment -->
 <div th:insert="~{fragments/navbar :: navbar}"></div>
 
 <div class="container">
-    <!-- Page headers -->
-    <h1 class="my-3 text-center" th:text="|Pending Sales Orders|">Customer List</h1>
-    <h3 class="my-3 text-center" th:text="|For the period starting on ${month} 1, ${year}|">Customer List</h3>
-    <!-- Customer list as table -->
+    <!-- 页面标题 -->
+    <h1 class="my-3 text-center" th:text="|待处理销售订单|">待处理销售订单</h1>
+    <h3 class="my-3 text-center" th:text="|查询周期起始日期：${month} 1, ${year}|">查询周期起始日期</h3>
+
+    <!-- 待处理销售订单报表 -->
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">Date</th>
-                <th scope="col">Customer</th>
-                <th scope="col">Sales Order</th>
-                <th scope="col">Total</th>
-                <th scope="col">Delay (Days)</th>
+                <th scope="col">日期</th>
+                <th scope="col">客户</th>
+                <th scope="col">销售订单</th>
+                <th scope="col">总金额</th>
+                <th scope="col">延迟天数</th>
             </tr>
         </thead>
         <tbody>
@@ -26,11 +27,11 @@
                 <td th:text="${saleOrder.salesOrder}">Mark</td>
                 <td th:text="${#numbers.formatCurrency(saleOrder.total)}">Otto</td>
                 <td th:text="${saleOrder.delay}">Otto</td>
-                <!-- TODO: Adds button to delete sales order (first: implement sales order CRUD controll) -->
+                <!-- TODO：添加删除销售订单的按钮 -->
             </tr>
         </tbody>
     </table>
 </div>
 
-<!-- Header fragment -->
+<!-- Footer fragment -->
 <div th:insert="~{fragments/footer :: footer}"></div>

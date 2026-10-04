@@ -1,20 +1,21 @@
-<!-- Header -->
+<!-- 页面头部 -->
 <!-- Header fragment -->
 <div th:insert="~{fragments/header :: header}"></div>
 <!-- Navbar fragment -->
 <div th:insert="~{fragments/navbar :: navbar}"></div>
 
 <div class="container">
-    <!-- Page headers -->
-    <h1 class="my-3 text-center" th:text="|For year: ${year}|">For year: 2023</h1>
-    <!-- Customer list as table -->
+    <!-- 页面标题 -->
+    <h1 class="my-3 text-center" th:text="|年份：${year}|">年份：2023</h1>
+
+    <!-- 缺货订单报表 -->
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">Date</th>
-                <th scope="col">Customer</th>
-                <th scope="col">Sales Order</th>
-                <th scope="col">Total</th>
+                <th scope="col">日期</th>
+                <th scope="col">客户</th>
+                <th scope="col">销售订单</th>
+                <th scope="col">总金额</th>
             </tr>
         </thead>
         <tbody>
@@ -23,11 +24,11 @@
                 <td th:text="${backorder.customer}">Mark</td>
                 <td th:text="${backorder.salesOrder}">Mark</td>
                 <td th:text="${#numbers.formatCurrency(backorder.total)}">Otto</td>
-                <!-- TODO: Adds button to delete sales order (first: implement sales order CRUD controll) -->
+                <!-- TODO：添加删除销售订单的按钮 -->
             </tr>
         </tbody>
     </table>
 </div>
 
-<!-- Header fragment -->
+<!-- Footer fragment -->
 <div th:insert="~{fragments/footer :: footer}"></div>

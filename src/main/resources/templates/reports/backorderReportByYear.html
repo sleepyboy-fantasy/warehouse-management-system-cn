@@ -1,4 +1,4 @@
-<!-- Header -->
+<!-- 页面头部 -->
 <!-- Header fragment -->
 <div th:insert="~{fragments/header :: header}"></div>
 <!-- Navbar fragment -->
@@ -7,49 +7,50 @@
 <div class="container">
 
     <div class="col-md-6 mx-auto">
-        <!-- Page headers -->
-        <h1 class="my-3 text-center">Backorders By Year</h1>
-        <!-- FLIGHT FORM -->
+        <!-- 页面标题 -->
+        <h1 class="my-3 text-center">年度缺货订单报表</h1>
+
+        <!-- 报表查询表单 -->
         <form action="#" th:action="@{/reports/back-order-report-by-year}" th:object="${backorderReportByYearDto}"
             method="post" class="horizontal needs-validation" novalidate>
 
-            <!-- Year -->
+            <!-- 年份 -->
             <div class="my-3">
-                <label for="year" class="form-label">Year</label>
+                <label for="year" class="form-label">年份</label>
                 <input class="form-control" th:field="*{year}" type="number" value="2023" min="2023" max="2023"
-                    id="year" aria-label="Default select example" required>
+                    id="year" aria-label="默认选择示例" required>
                 <div class="invalid-feedback">
-                    Please enter a year
+                    请输入年份
                 </div>
             </div>
 
-            <!-- Month -->
+            <!-- 月份 -->
             <!-- <div class="my-3">
-                <label for="month" class="form-label">Month</label>
-                <select class="form-select" th:field="*{month}" id="month" aria-label="Default select example"
+                <label for="month" class="form-label">月份</label>
+                <select class="form-select" th:field="*{month}" id="month" aria-label="默认选择示例"
                     required>
-                    <option value="0" selected disable>Choose...</option>
-                    <option value="01">January</option>
-                    <option value="02">February</option>
-                    <option value="03">March</option>
-                    <option value="04">April</option>
-                    <option value="05">May</option>
-                    <option value="06">June</option>
-                    <option value="07">July</option>
-                    <option value="08">August</option>
-                    <option value="09">September</option>
-                    <option value="10">October</option>
-                    <option value="11">November</option>
-                    <option value="12">December</option>
+                    <option value="0" selected disable>请选择...</option>
+                    <option value="01">一月</option>
+                    <option value="02">二月</option>
+                    <option value="03">三月</option>
+                    <option value="04">四月</option>
+                    <option value="05">五月</option>
+                    <option value="06">六月</option>
+                    <option value="07">七月</option>
+                    <option value="08">八月</option>
+                    <option value="09">九月</option>
+                    <option value="10">十月</option>
+                    <option value="11">十一月</option>
+                    <option value="12">十二月</option>
                 </select>
                 <div class="invalid-feedback">
-                    Please select a month
+                    请选择月份
                 </div> -->
 
-            <!-- SEARCH BUTTON -->
+            <!-- 打印报表按钮 -->
             <div class="">
                 <div class="d-grid mx-auto">
-                    <input type="submit" id="print-report" value="Print Report" class="btn btn-dark" />
+                    <input type="submit" id="print-report" value="打印报表" class="btn btn-dark" />
                 </div>
             </div>
         </form>
@@ -58,18 +59,18 @@
 </div>
 
 <script>
-    //JAVASCRIPT SNIPPET TO PROVIDES DATA VALIDATION ON FRONT END WHEN FORM IS SUBMITTED
-    //IT WILL SUPPLY A MESSAGE BELOW THE BLANK INPUT FIELD
+    // JavaScript：表单提交时进行前端数据校验
+    // 当输入框为空或输入内容不符合要求时，在输入框下方显示提示信息
     (function () {
         'use strict'
 
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        // it checks every input field that its class attribute contains "needs-validation"
+        // 获取所有需要使用 Bootstrap 校验样式的表单
+        // 检查 class 属性中是否包含 "needs-validation"
 
-        //TODO: MOVE JS TO SEPARTE FILE
+        // TODO：将 JavaScript 移动到独立文件
         var forms = document.querySelectorAll('.needs-validation')
 
-        // Loop over them and prevent submission
+        // 遍历表单并阻止无效数据提交
         Array.prototype.slice.call(forms)
             .forEach(function (form) {
                 form.addEventListener('submit', function (event) {
@@ -83,5 +84,6 @@
             })
     })()
 </script>
-<!-- Header fragment -->
+
+<!-- Footer fragment -->
 <div th:insert="~{fragments/footer :: footer}"></div>
