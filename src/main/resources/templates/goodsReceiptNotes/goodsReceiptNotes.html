@@ -47,7 +47,7 @@
     </div>
 
     <!-- Page header -->
-    <h1 class="my-3" th:text="${title}">收货单</h1>
+    <h1 class="my-3" th:text="${title}">收货单列表</h1>
 
     <!-- Simple search bar (binds criteria.id) + Advanced button -->
     <form th:action="@{/goods-receipt-notes}" method="get" th:object="${criteria}" class="card shadow-sm mb-3">
@@ -92,8 +92,8 @@
         <thead>
             <tr>
                 <th th:replace="~{fragments/pagination :: sortHeader(label='日期', property='date', page=${page}, baseUrl='/goods-receipt-notes')}"></th>
-                <th th:replace="~{fragments/pagination :: sortHeader(label='收货单', property='id', page=${page}, baseUrl='/goods-receipt-notes')}"></th>
-                <th th:replace="~{fragments/pagination :: sortHeader(label='采购订单', property='purchaseOrder.id', page=${page}, baseUrl='/goods-receipt-notes')}"></th>
+                <th th:replace="~{fragments/pagination :: sortHeader(label='收货单编号', property='id', page=${page}, baseUrl='/goods-receipt-notes')}"></th>
+                <th th:replace="~{fragments/pagination :: sortHeader(label='采购订单编号', property='purchaseOrder.id', page=${page}, baseUrl='/goods-receipt-notes')}"></th>
                 <th th:replace="~{fragments/pagination :: sortHeader(label='供应商', property='purchaseOrder.vendor.name', page=${page}, baseUrl='/goods-receipt-notes')}"></th>
                 <th th:replace="~{fragments/pagination :: sortHeader(label='状态', property='status', page=${page}, baseUrl='/goods-receipt-notes')}"></th>
                 <th scope="col">收货数量</th>
@@ -199,7 +199,7 @@
                                 <option th:each="m : ${textModes}"
                                         th:value="${m}"
                                         th:text="${m.name().replace('_', ' ').toLowerCase()}">
-                                    starts with
+                                    以……开头
                                 </option>
                             </select>
                         </div>
@@ -221,7 +221,7 @@
                                 <option th:each="m : ${textModes}"
                                         th:value="${m}"
                                         th:text="${m.name().replace('_', ' ').toLowerCase()}">
-                                    contains
+                                    包含
                                 </option>
                             </select>
                         </div>
@@ -272,7 +272,7 @@
                     </button>
 
                     <button type="submit" class="btn btn-dark">
-                        <i class="bi bi-search me-1"></i>搜索
+                        <i class="bi bi-search me-1"></i>查询
                     </button>
                 </div>
             </form>
