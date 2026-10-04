@@ -6,7 +6,7 @@
 
 <div class="container">
     <!-- 页面标题 -->
-    <h1 class="my-3" th:text="|采购订单|">采购订单</h1>
+    <h1 class="my-3" th:text="|采购订单查询结果|">采购订单查询结果</h1>
     <!-- 采购订单列表 -->
     <div th:if="${purchaseOrder == null}">
         <h3 class="my-3">未找到匹配的采购订单</h3>
@@ -15,7 +15,7 @@
         <thead>
             <tr>
                 <th scope="col">日期</th>
-                <th scope="col">采购订单</th>
+                <th scope="col">采购订单编号</th>
                 <th scope="col">合计</th>
                 <th scope="col">详情</th>
                 <th scope="col"></th>
