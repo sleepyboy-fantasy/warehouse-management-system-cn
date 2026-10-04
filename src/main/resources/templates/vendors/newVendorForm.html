@@ -37,9 +37,19 @@
                     <!-- 省 -->
                     <div class="col-md-4">
                         <label for="city" class="form-label">省</label>
-                        <input class="form-control" th:field="*{city}" type="text" id="city">
+
+                        <select class="form-select"
+                                th:field="*{city}"
+                                id="city"
+                                required>
+                            <option value="" selected disabled hidden>请选择省</option>
+                            <option th:each="province : ${regions.keySet()}"
+                                    th:value="${province}"
+                                    th:text="${province}">
+                            </option>
+                        </select>
                         <div class="invalid-feedback">
-                            请输入省名称
+                            请选择省
                         </div>
                     </div>
 
@@ -91,20 +101,48 @@
     </div>
 </div>
 
-<script>
+<script th:inline="javascript">
 
-    // 页面表单前端数据校验
-    // 当表单提交时，如果存在未填写的必填字段，则显示对应提示信息
+    // 中国省市数据
+    const regions = /*[[${regions}]]*/ {};
+
+    const provinceSelect = document.getElementById('city');
+    const citySelect = document.getElementById('state');
+
+    // 选择省份后加载对应城市
+    provinceSelect.addEventListener('change', function () {
+        const province = this.value;
+        const cities = regions[province] || [];
+
+        // 清空原来的城市选项
+        citySelect.innerHTML = '';
+
+        // 添加默认选项
+        const defaultOption = document.createElement('option');
+        defaultOption.value = '';
+        defaultOption.textContent = '请选择市';
+        defaultOption.disabled = true;
+        defaultOption.selected = true;
+        citySelect.appendChild(defaultOption);
+
+        // 添加城市
+        cities.forEach(function (city) {
+            const option = document.createElement('option');
+            option.value = city;
+            option.textContent = city;
+            citySelect.appendChild(option);
+        });
+
+        citySelect.disabled = cities.length === 0;
+    });
+
+
+    // Bootstrap 表单验证
     (function () {
         'use strict'
 
-        // 获取需要进行 Bootstrap 表单校验的表单
-        // 只处理 class 属性中包含 needs-validation 的表单
-
-        // TODO: 将 JavaScript 移动到独立文件
         var forms = document.querySelectorAll('.needs-validation')
 
-        // 遍历表单并阻止无效表单提交
         Array.prototype.slice.call(forms)
             .forEach(function (form) {
                 form.addEventListener('submit', function (event) {
@@ -117,6 +155,7 @@
                 }, false)
             })
     })()
+
 </script>
 
 

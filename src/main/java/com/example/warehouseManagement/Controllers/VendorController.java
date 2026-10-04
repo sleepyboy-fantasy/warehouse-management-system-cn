@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.warehouseManagement.Domains.ChinaRegionPool;
 import com.example.warehouseManagement.Domains.StatePool;
 import com.example.warehouseManagement.Domains.Vendor;
 import com.example.warehouseManagement.Domains.DTOs.AdvancedVendorSearchCriteria;
@@ -73,7 +74,7 @@ public class VendorController {
      */
     @GetMapping(NEW_VENDOR_PATH)
     public String newvendor(@ModelAttribute Vendor mewVendor, Model model) {
-        model.addAttribute("states", StatePool.getStates());
+        model.addAttribute("regions", ChinaRegionPool.getRegions());
         model.addAttribute("newVendor", Vendor.builder().build());
         return "vendors/newVendorForm";
     }
