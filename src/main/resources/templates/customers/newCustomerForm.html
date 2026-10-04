@@ -32,20 +32,23 @@
                     </div>
                     <div class="col-md-4">
                         <label for="city" class="form-label">省</label>
-                        <input class="form-control" th:field="*{city}" type="text" id="city">
+                        <select class="form-select" th:field="*{city}" id="city" required>
+                            <option value="" selected disabled>请选择省份</option>
+                            <option th:each="region : ${regions.keySet()}"
+                                    th:value="${region}"
+                                    th:text="${region}">
+                                请选择省份
+                            </option>
+                        </select>
                         <div class="invalid-feedback">
-                            请输入省份名称
+                            请选择省份
                         </div>
                     </div>
                     <div class="col-md-3">
                         <label for="state" class="form-label">市</label>
-                        <!-- 市下拉选择列表 -->
                         <select class="form-select" th:field="*{state}" aria-label="市选择"
-                            th:errorclass="fieldError" id="state" required name="state">
-                            <option value="" selected disable hidden>请选择...</option>
-                            <option th:each="state: ${states}" th:text="|${state.name}|"
-                                th:value="${state.abbreviation}">请选择
-                            </option>
+                            th:errorclass="fieldError" id="state" required>
+                            <option value="" selected disabled>请先选择省份</option>
                         </select>
                         <div class="invalid-feedback">
                             请选择市
@@ -76,7 +79,7 @@
         </div>
     </div>
 </div>
-<script>
+<script th:inline="javascript">
 
     //JAVASCRIPT SNIPPET TO PROVIDES DATA VALIDATION ON FRONT END WHEN FORM IS SUBMITTED
     //IT WILL SUPPLY A MESSAGE BELOW THE BLANK INPUT FIELD
@@ -102,6 +105,33 @@
                 }, false)
             })
     })()
+
+
+    const regions = /*[[${regions}]]*/ {};
+
+    const provinceSelect = document.getElementById('city');
+    const citySelect = document.getElementById('state');
+
+    provinceSelect.addEventListener('change', function () {
+        const province = this.value;
+        const cities = regions[province] || [];
+
+        citySelect.innerHTML = '';
+
+        const defaultOption = document.createElement('option');
+        defaultOption.value = '';
+        defaultOption.textContent = '请选择城市';
+        defaultOption.disabled = true;
+        defaultOption.selected = true;
+        citySelect.appendChild(defaultOption);
+
+        cities.forEach(function (city) {
+            const option = document.createElement('option');
+            option.value = city;
+            option.textContent = city;
+            citySelect.appendChild(option);
+        });
+    });
 </script>
 
 

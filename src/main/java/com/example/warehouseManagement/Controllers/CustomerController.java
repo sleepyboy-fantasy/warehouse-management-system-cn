@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.warehouseManagement.Domains.Customer;
 import com.example.warehouseManagement.Domains.StatePool;
+import com.example.warehouseManagement.Domains.ChinaRegionPool;
 import com.example.warehouseManagement.Domains.DTOs.AdvancedCustomerSearchCriteria;
 import com.example.warehouseManagement.Domains.DTOs.TextMode;
 import com.example.warehouseManagement.Domains.Exceptions.CustomerNotFoundException;
@@ -73,7 +74,7 @@ public class CustomerController {
      */
     @GetMapping(NEW_CUSTOMER_PATH)
     public String newCustomer(@ModelAttribute Customer newCustomer, Model model) {
-        model.addAttribute("states", StatePool.getStates());
+        model.addAttribute("regions", ChinaRegionPool.getRegions());
         model.addAttribute("newCustomer", Customer.builder().build());
         return "customers/newCustomerForm";
     }
