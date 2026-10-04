@@ -6,14 +6,14 @@
 
 <div class="container">
     <!-- Page headers -->
-    <h1 class="my-3 text-center" th:text="|收货单：${goodsReceiptNote.id}|">收货单</h1>
-    <h3 class="my-3 text-center" th:text="|采购订单：${goodsReceiptNote.purchaseOrder.id}|">采购订单</h3>
+    <h1 class="my-3 text-center" th:text="|收货单编号：${goodsReceiptNote.id}|">收货单编号</h1>
+    <h3 class="my-3 text-center" th:text="|采购订单编号：${goodsReceiptNote.purchaseOrder.id}|">采购订单编号</h3>
     <h3 class="my-3 text-center" th:text="|日期：${#temporals.monthNameShort(goodsReceiptNote.date)} ${#temporals.format(goodsReceiptNote.date, ' dd, yyyy')}|">日期</h3>
     <!-- 收货单明细表格 -->
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">#</th>
+                <th scope="col">序号</th>
                 <th scope="col">商品</th>
                 <th scope="col">商品描述</th>
                 <th scope="col">收货数量</th>
