@@ -28,12 +28,12 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         </div>
-        <h1 class="my-3 text-center">搜索采购订单</h1>
+        <h1 class="my-3 text-center">查询采购订单</h1>
         <!-- 根据编号快速查询（输入框支持自动补全） -->
         <form action="#" th:action="@{/goods-receipt-notes/search-purchase-order}" th:object="${purchaseOrderNumberDto}"
             method="post" class="row g-3 needs-validation" novalidate>
             <div class="col-12">
-                <label for="purchaseOrderId" class="form-label">采购订单</label>
+                <label for="purchaseOrderId" class="form-label">采购订单编号</label>
                 <input class="form-control" type="text" id="purchaseOrderId" th:field="*{purchaseOrderNumber}"
                     name="salesOrder" required
                     data-autocomplete-source="PURCHASE_ORDER"
@@ -45,7 +45,7 @@
                 </div>
             </div>
             <div class="col-12 d-flex gap-2">
-                <button type="submit" class="btn btn-dark flex-grow-1">搜索采购订单</button>
+                <button type="submit" class="btn btn-dark flex-grow-1">查询采购订单</button>
                 <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#advancedSearchModal">
                     <i class="bi bi-funnel me-1"></i>高级搜索
                 </button>
@@ -58,7 +58,7 @@
         <div class="d-flex justify-content-between align-items-center mb-2">
             <h2 class="h4 m-0">
                 <span th:if="${criteria.isActive()}">高级搜索结果</span>
-                <span th:unless="${criteria.isActive()}">采购订单</span>
+                <span th:unless="${criteria.isActive()}">采购订单列表</span>
                 <small class="text-muted" th:text="|(${advancedResults.totalElements})|"></small>
             </h2>
             <a th:if="${criteria.isActive()}" th:href="@{/goods-receipt-notes/search-purchase-order}"
@@ -70,10 +70,10 @@
         <table th:unless="${advancedResults.isEmpty()}" class="table table-sm align-middle">
             <thead>
                 <tr>
-                    <th th:replace="~{fragments/pagination :: sortHeader(label='Id', property='id', page=${advancedResults}, baseUrl='/goods-receipt-notes/search-purchase-order')}"></th>
-                    <th th:replace="~{fragments/pagination :: sortHeader(label='Date', property='date', page=${advancedResults}, baseUrl='/goods-receipt-notes/search-purchase-order')}"></th>
-                    <th th:replace="~{fragments/pagination :: sortHeader(label='Vendor', property='vendor.name', page=${advancedResults}, baseUrl='/goods-receipt-notes/search-purchase-order')}"></th>
-                    <th th:replace="~{fragments/pagination :: sortHeader(label='Status', property='status', page=${advancedResults}, baseUrl='/goods-receipt-notes/search-purchase-order')}"></th>
+                    <th th:replace="~{fragments/pagination :: sortHeader(label='采购订单编号', property='id', page=${advancedResults}, baseUrl='/goods-receipt-notes/search-purchase-order')}"></th>
+                    <th th:replace="~{fragments/pagination :: sortHeader(label='日期', property='date', page=${advancedResults}, baseUrl='/goods-receipt-notes/search-purchase-order')}"></th>
+                    <th th:replace="~{fragments/pagination :: sortHeader(label='供应商', property='vendor.name', page=${advancedResults}, baseUrl='/goods-receipt-notes/search-purchase-order')}"></th>
+                    <th th:replace="~{fragments/pagination :: sortHeader(label='状态', property='status', page=${advancedResults}, baseUrl='/goods-receipt-notes/search-purchase-order')}"></th>
                     <th class="text-end">合计</th>
                     <th></th>
                 </tr>
@@ -114,12 +114,12 @@
             <div class="col-md-3">
               <label class="form-label small mb-1">采购订单编号</label>
               <select class="form-select form-select-sm" th:field="*{idMode}">
-                <option th:each="m : ${textModes}" th:value="${m}" th:text="${m.name().replace('_', ' ').toLowerCase()}">starts with</option>
+                <option th:each="m : ${textModes}" th:value="${m}" th:text="${m.name().replace('_', ' ').toLowerCase()}">以……开头</option>
               </select>
             </div>
             <div class="col-md-9">
               <label class="form-label small mb-1">&nbsp;</label>
-              <input type="text" class="form-control" th:field="*{id}" placeholder="e.g. 10">
+              <input type="text" class="form-control" th:field="*{id}" placeholder="例如：10">
             </div>
           </div>
 
@@ -128,12 +128,12 @@
             <div class="col-md-3">
               <label class="form-label small mb-1">供应商名称</label>
               <select class="form-select form-select-sm" th:field="*{vendorMode}">
-                <option th:each="m : ${textModes}" th:value="${m}" th:text="${m.name().replace('_', ' ').toLowerCase()}">contains</option>
+                <option th:each="m : ${textModes}" th:value="${m}" th:text="${m.name().replace('_', ' ').toLowerCase()}">包含</option>
               </select>
             </div>
             <div class="col-md-9">
               <label class="form-label small mb-1">&nbsp;</label>
-              <input type="text" class="form-control" th:field="*{vendor}" placeholder="e.g. Apple">
+              <input type="text" class="form-control" th:field="*{vendor}" placeholder="例如：Apple">
             </div>
           </div>
 
