@@ -12,7 +12,7 @@
         method="post" class="row g-3 needs-validation" novalidate>
         <table class="table">
             <div class="col-md-6">
-                <label for="purchaseOrderId" class="form-label">采购订单</label>
+                <label for="purchaseOrderId" class="form-label">采购订单编号</label>
                 <input class="form-control" type="text" id="purchaseOrderId" th:field="*{purchaseOrderId}" th:value="${purchaseOrder.id}" disabled
                     readonly name="purchaseOrderId">
             </div>
@@ -22,7 +22,7 @@
             </div>
             <thead>
                 <tr>
-                    <th scope="col">#</th>
+                    <th scope="col">序号</th>
                     <th scope="col">商品</th>
                     <th scope="col">商品描述</th>
                     <th scope="col">订购数量</th>
