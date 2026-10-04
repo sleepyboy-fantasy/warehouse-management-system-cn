@@ -24,23 +24,23 @@
                         </div>
                     </div>
                     <div class="col-md-8">
-                        <label for="street" class="form-label">街道地址</label>
+                        <label for="street" class="form-label">详细地址</label>
                         <input class="form-control" th:field="*{street}" type="text" id="street">
                         <div class="invalid-feedback">
-                            请输入街道地址
+                            请输入详细地址
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <label for="city" class="form-label">城市</label>
+                        <label for="city" class="form-label">省</label>
                         <input class="form-control" th:field="*{city}" type="text" id="city">
                         <div class="invalid-feedback">
-                            请输入城市名称
+                            请输入省份名称
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <label for="state" class="form-label">地区</label>
-                        <!-- 地区下拉选择列表 -->
-                        <select class="form-select" th:field="*{state}" aria-label="地区选择"
+                        <label for="state" class="form-label">市</label>
+                        <!-- 市下拉选择列表 -->
+                        <select class="form-select" th:field="*{state}" aria-label="市选择"
                             th:errorclass="fieldError" id="state" required name="state">
                             <option value="" selected disable hidden>请选择...</option>
                             <option th:each="state: ${states}" th:text="|${state.name}|"
@@ -48,15 +48,15 @@
                             </option>
                         </select>
                         <div class="invalid-feedback">
-                            请选择地区
+                            请选择市
                         </div>
                     </div>
-                    <!-- 地区字段结束 -->
+                    <!-- 市字段结束 -->
                     <div class="col-md-4">
-                        <label for="zipcode" class="form-label">邮政编码</label>
+                        <label for="zipcode" class="form-label">市/区/县</label>
                         <input class="form-control" th:field="*{zipcode}" type="text" id="zipcode">
                         <div class="invalid-feedback">
-                            请输入邮政编码
+                            请输入市/区/县
                         </div>
                     </div>
                     <div class="col-md-5">
