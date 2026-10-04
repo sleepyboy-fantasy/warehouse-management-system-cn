@@ -1,74 +1,88 @@
-<!-- Header -->
-<!-- Header fragment -->
+<!-- 页面头部 -->
 <div th:insert="~{fragments/header :: header}"></div>
-<!-- Navbar fragment -->
+
+<!-- 导航栏 -->
 <div th:insert="~{fragments/navbar :: navbar}"></div>
 
 <div class="container">
     <div class="container">
         <div class="container mx-auto col-md-6" id="new-vendor-form">
             <div id="header">
-                <h1 class="mt-3">New Vendor</h1>
+                <h1 class="mt-3">新增供应商</h1>
             </div>
 
             <div id="newvendorForm">
-                <!-- SALE ORDER FORM -->
+                <!-- 供应商表单 -->
                 <form action="#" th:action="@{/vendors/new-vendor}" th:object="${newVendor}"
                     method="post" class="row g-3 needs-validation" novalidate>
-                    <!-- FROM/TO INPUTS FIELDS-->
+
+                    <!-- 供应商名称 -->
                     <div class="col-md-12">
-                        <label for="name" class="form-label">Vendor Name</label>
+                        <label for="name" class="form-label">供应商名称</label>
                         <input class="form-control" th:field="*{name}" type="text" id="name">
                         <div class="invalid-feedback">
-                            Please enter the vendor name
+                            请输入供应商名称
                         </div>
                     </div>
+
+                    <!-- 详细地址 -->
                     <div class="col-md-8">
-                        <label for="street" class="form-label">Street</label>
+                        <label for="street" class="form-label">详细地址</label>
                         <input class="form-control" th:field="*{street}" type="text" id="street">
                         <div class="invalid-feedback">
-                            Please enter the street address
+                            请输入详细地址
                         </div>
                     </div>
+
+                    <!-- 省 -->
                     <div class="col-md-4">
-                        <label for="city" class="form-label">City</label>
+                        <label for="city" class="form-label">省</label>
                         <input class="form-control" th:field="*{city}" type="text" id="city">
                         <div class="invalid-feedback">
-                            Please enter the city name
+                            请输入省名称
                         </div>
                     </div>
+
+                    <!-- 市 -->
                     <div class="col-md-3">
-                        <label for="state" class="form-label">State</label>
-                        <!-- Drop down list of US States -->
-                        <select class="form-select" th:field="*{state}" aria-label="Default select example"
+                        <label for="state" class="form-label">市</label>
+
+                        <!-- 省/市下拉选项 -->
+                        <select class="form-select" th:field="*{state}" aria-label="请选择市"
                             th:errorclass="fieldError" id="state" required name="state">
-                            <option value="" selected disable hidden>Choose...</option>
+                            <option value="" selected disabled hidden>请选择...</option>
                             <option th:each="state: ${states}" th:text="|${state.name}|"
                                 th:value="${state.abbreviation}">Two
                             </option>
                         </select>
+
                         <div class="invalid-feedback">
-                            Please select the state
+                            请选择市
                         </div>
                     </div>
-                    <!-- End of state field-->
+
+                    <!-- 市/区/县 -->
                     <div class="col-md-4">
-                        <label for="zipcode" class="form-label">Zipcode</label>
+                        <label for="zipcode" class="form-label">市/区/县</label>
                         <input class="form-control" th:field="*{zipcode}" type="text" id="zipcode">
                         <div class="invalid-feedback">
-                            Please enter the zipcode number
+                            请输入市/区/县
                         </div>
                     </div>
+
+                    <!-- 联系方式 -->
                     <div class="col-md-5">
-                        <label for="contactInfo" class="form-label">Contact Info</label>
+                        <label for="contactInfo" class="form-label">联系方式</label>
                         <input class="form-control" th:field="*{contactInfo}" type="text" id="contactInfo">
                         <div class="invalid-feedback">
-                            Please enter the contact information
+                            请输入联系方式
                         </div>
                     </div>
+
+                    <!-- 提交按钮 -->
                     <div class="col-12">
                         <div class="d-grid mx-auto">
-                            <button type="submit" class="btn btn-dark col-12">Add vendor</button>
+                            <button type="submit" class="btn btn-dark col-12">新增供应商</button>
                         </div>
                     </div>
                 </form>
@@ -76,20 +90,21 @@
         </div>
     </div>
 </div>
+
 <script>
 
-    //JAVASCRIPT SNIPPET TO PROVIDES DATA VALIDATION ON FRONT END WHEN FORM IS SUBMITTED
-    //IT WILL SUPPLY A MESSAGE BELOW THE BLANK INPUT FIELD
+    // 页面表单前端数据校验
+    // 当表单提交时，如果存在未填写的必填字段，则显示对应提示信息
     (function () {
         'use strict'
 
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        // it checks every input field that its class attribute contains "needs-validation"
+        // 获取需要进行 Bootstrap 表单校验的表单
+        // 只处理 class 属性中包含 needs-validation 的表单
 
-        //TODO: MOVE JS TO SEPARTE FILE
+        // TODO: 将 JavaScript 移动到独立文件
         var forms = document.querySelectorAll('.needs-validation')
 
-        // Loop over them and prevent submission
+        // 遍历表单并阻止无效表单提交
         Array.prototype.slice.call(forms)
             .forEach(function (form) {
                 form.addEventListener('submit', function (event) {
@@ -105,7 +120,5 @@
 </script>
 
 
-<!-- Footer fragment -->
+<!-- 页脚 -->
 <div th:insert="~{fragments/footer :: footer}"></div>
-
-
