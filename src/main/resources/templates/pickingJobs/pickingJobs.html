@@ -30,7 +30,7 @@
     </div>
 
     <!-- 页面标题 -->
-    <h1 class="my-3" th:text="${title}">拣货任务</h1>
+    <h1 class="my-3" th:text="${title}">拣货任务列表</h1>
 
     <!-- 简单搜索栏 -->
     <form th:action="@{/picking-jobs}" method="get" th:object="${criteria}" class="card shadow-sm mb-3">
@@ -72,8 +72,8 @@
         <thead>
             <tr>
                 <th th:replace="~{fragments/pagination :: sortHeader(label='日期', property='date', page=${page}, baseUrl='/picking-jobs')}"></th>
-                <th th:replace="~{fragments/pagination :: sortHeader(label='拣货任务', property='id', page=${page}, baseUrl='/picking-jobs')}"></th>
-                <th th:replace="~{fragments/pagination :: sortHeader(label='销售订单', property='salesOrder.id', page=${page}, baseUrl='/picking-jobs')}"></th>
+                <th th:replace="~{fragments/pagination :: sortHeader(label='拣货任务编号', property='id', page=${page}, baseUrl='/picking-jobs')}"></th>
+                <th th:replace="~{fragments/pagination :: sortHeader(label='销售订单编号', property='salesOrder.id', page=${page}, baseUrl='/picking-jobs')}"></th>
                 <th th:replace="~{fragments/pagination :: sortHeader(label='客户', property='salesOrder.customer.name', page=${page}, baseUrl='/picking-jobs')}"></th>
                 <th th:replace="~{fragments/pagination :: sortHeader(label='状态', property='status', page=${page}, baseUrl='/picking-jobs')}"></th>
                 <th scope="col"></th>
@@ -173,7 +173,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">取消</button>
-          <button type="submit" class="btn btn-dark"><i class="bi bi-search me-1"></i>搜索</button>
+          <button type="submit" class="btn btn-dark"><i class="bi bi-search me-1"></i>查询</button>
         </div>
       </form>
     </div>
