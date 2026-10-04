@@ -1,23 +1,24 @@
-<!-- Header -->
+<!-- 页面头部 -->
 <!-- Header fragment -->
 <div th:insert="~{fragments/header :: header}"></div>
 <!-- Navbar fragment -->
 <div th:insert="~{fragments/navbar :: navbar}"></div>
 
 <div class="container">
-    <!-- Page headers -->
-    <h1 class="my-3 text-center" th:text="|Customer: ${salesOrder.customer.name}|">Customer</h1>
-    <h3 class="my-3 text-center" th:text="|Address: ${salesOrder.customer.formattedAddress}|">Customer Address</h3>
-    <h3 class="my-3 text-center" th:text="|Date: ${salesOrder.date}|">Date</h3>
-    <!-- Customer list as table -->
+    <!-- 页面标题 -->
+    <h1 class="my-3 text-center" th:text="|客户：${salesOrder.customer.name}|">客户</h1>
+    <h3 class="my-3 text-center" th:text="|地址：${salesOrder.customer.formattedAddress}|">客户地址</h3>
+    <h3 class="my-3 text-center" th:text="|日期：${salesOrder.date}|">日期</h3>
+
+    <!-- 销售订单明细表 -->
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">Description</th>
-                <th scope="col">Sku</th>
-                <th scope="col">Qty</th>
-                <th scope="col">Sales Price</th>
-                <th scope="col">Subtotal</th>
+                <th scope="col">描述</th>
+                <th scope="col">商品编号</th>
+                <th scope="col">数量</th>
+                <th scope="col">销售价格</th>
+                <th scope="col">小计</th>
             </tr>
         </thead>
         <tbody>
@@ -30,8 +31,8 @@
             </tr>
         </tbody>
     </table>
-    <h4 class="my-3 text-center" th:text="|Total: ${#numbers.formatCurrency(salesOrder.total)}|">Customer List</h4>
+    <h4 class="my-3 text-center" th:text="|总金额：${#numbers.formatCurrency(salesOrder.total)}|">客户列表</h4>
 </div>
 
-<!-- Header fragment -->
+<!-- 页脚 -->
 <div th:insert="~{fragments/footer :: footer}"></div>

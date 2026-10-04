@@ -1,25 +1,26 @@
-<!-- Header -->
+<!-- 页面头部 -->
 <!-- Header fragment -->
 <div th:insert="~{fragments/header :: header}"></div>
 <!-- Navbar fragment -->
 <div th:insert="~{fragments/navbar :: navbar}"></div>
 
 <div class="container">
-    <!-- Page headers -->
-    <h1 class="my-3 text-center" th:text="|Stock Level Report|">Stock Level Report</h1>
-    <h3 class="my-3 text-center" th:text="|For: ${date}|">Customer List</h3>
-    <!-- Customer list as table -->
+    <!-- 页面标题 -->
+    <h1 class="my-3 text-center" th:text="|库存水平报表|">库存水平报表</h1>
+    <h3 class="my-3 text-center" th:text="|日期：${date}|">客户列表</h3>
+
+    <!-- 库存水平报表 -->
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">Vendor</th>
-                <th scope="col">Sku</th>
-                <th scope="col">Description</th>
-                <th scope="col">Average Week Sales</th>
-                <th scope="col">Qty on Hand</th>
-                <th scope="col">Weeks of Inventory</th>
-                <th scope="col">Qty In Transit</th>
-                <th scope="col">Weeks of Inventory</th>
+                <th scope="col">供应商</th>
+                <th scope="col">商品编号</th>
+                <th scope="col">描述</th>
+                <th scope="col">周平均销量</th>
+                <th scope="col">现有库存数量</th>
+                <th scope="col">库存周数</th>
+                <th scope="col">在途数量</th>
+                <th scope="col">库存周数</th>
             </tr>
         </thead>
         <tbody>
@@ -37,5 +38,5 @@
     </table>
 </div>
 
-<!-- Header fragment -->
+<!-- 页脚 -->
 <div th:insert="~{fragments/footer :: footer}"></div>
