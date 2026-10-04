@@ -17,8 +17,8 @@
                     method="post" class="row g-3 needs-validation" novalidate>
                     <!-- PO INPUTS FIELDS-->
                     <div class="col-md-6">
-                        <label for="purchaseOrder" class="form-label">采购订单</label>
-                        <select class="form-select" th:field="*{purchaseOrder.id}" aria-label="采购订单选择"
+                        <label for="purchaseOrder" class="form-label">采购订单编号</label>
+                        <select class="form-select" th:field="*{purchaseOrder.id}" aria-label="采购订单编号选择"
                             th:errorclass="fieldError" id="purchaseOrder" required name="purchaseOrder">
                             <option value="" selected disable hidden>请选择...</option>
                             <option th:each="purchaseOrder: ${purchaseOrders}" th:text="|${purchaseOrder.id}|"
@@ -26,7 +26,7 @@
                             </option>
                         </select>
                         <div class="invalid-feedback">
-                            请选择采购订单
+                            请选择采购订单编号
                         </div>
                     </div>
                     <!-- 日期字段（日期将自动分配）-->
@@ -59,7 +59,7 @@
                     <!-- 提交按钮 -->
                     <div class="col-12">
                         <div class="d-grid mx-auto">
-                            <button type="submit" name="save" th:value="|yes|" class="btn btn-dark col-12">完成收货单</button>
+                            <button type="submit" name="save" th:value="|yes|" class="btn btn-dark col-12">完成收货</button>
                         </div>
                     </div>
                 </form>
