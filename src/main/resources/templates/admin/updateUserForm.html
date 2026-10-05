@@ -7,10 +7,6 @@
     <div class="col-md-6 mx-auto">
         <h1 class="my-3">编辑用户</h1>
 
-        <div th:if="${#fields.hasGlobalErrors()}" class="alert alert-danger">
-            <p th:each="err : ${#fields.globalErrors()}" th:text="${err}"></p>
-        </div>
-
         <form th:action="@{'/admin/users/' + ${userForm.id} + '/update'}" th:object="${userForm}" method="post" class="row g-3 needs-validation" novalidate>
             <div class="col-md-12">
                 <label for="username" class="form-label">用户名</label>
