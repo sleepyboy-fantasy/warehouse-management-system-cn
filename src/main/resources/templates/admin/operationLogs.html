@@ -1,0 +1,40 @@
+<!-- 页面头部 -->
+<div th:insert="~{fragments/header :: header}"></div>
+
+<!-- Navbar fragment -->
+<div th:insert="~{fragments/navbar :: navbar}"></div>
+
+<div class="container">
+    <h1 class="my-3" th:text="${title}">操作日志</h1>
+
+    <div th:if="${operationLogs == null or operationLogs.isEmpty()}"
+         class="alert alert-info">
+        暂无操作日志
+    </div>
+
+    <table th:if="${operationLogs != null and !operationLogs.isEmpty()}"
+           class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">时间</th>
+                <th scope="col">操作用户</th>
+                <th scope="col">操作</th>
+                <th scope="col">对象</th>
+                <th scope="col">详细信息</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr th:each="log : ${operationLogs}">
+                <td th:text="${log.createdAt}">2026-10-05T15:00:00Z</td>
+                <td th:text="${log.username}">admin</td>
+                <td th:text="${log.action}">新增用户</td>
+                <td th:text="${log.target}">User</td>
+                <td th:text="${log.details}">创建用户 test</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Footer fragment -->
+<div th:insert="~{fragments/footer :: footer}"></div>

@@ -11,6 +11,7 @@ import com.example.warehouseManagement.Services.PickingJobService;
 import com.example.warehouseManagement.Services.PurchaseOrderService;
 import com.example.warehouseManagement.Services.SalesOrderService;
 import com.example.warehouseManagement.Services.StockService;
+import com.example.warehouseManagement.Services.OperationLogService;
 
 @Controller
 @RequestMapping(value = "/")
@@ -22,19 +23,22 @@ public class DashBoardController {
     private final BackorderService backorderService;
     private final GoodsReceiptNoteService goodsReceiptNoteService;
     private final PickingJobService pickingJobService;
+    private final OperationLogService operationLogService;
 
     public DashBoardController(SalesOrderService salesOrderService,
                                PurchaseOrderService purchaseOrderService,
                                StockService stockService,
                                BackorderService backorderService,
                                GoodsReceiptNoteService goodsReceiptNoteService,
-                               PickingJobService pickingJobService) {
+                               PickingJobService pickingJobService,
+                               OperationLogService operationLogService) {
         this.salesOrderService = salesOrderService;
         this.purchaseOrderService = purchaseOrderService;
         this.stockService = stockService;
         this.backorderService = backorderService;
         this.goodsReceiptNoteService = goodsReceiptNoteService;
         this.pickingJobService = pickingJobService;
+        this.operationLogService = operationLogService;
     }
 
     @GetMapping
@@ -57,7 +61,9 @@ public class DashBoardController {
         // Row 5 — reorder + top movers
         model.addAttribute("reorderItems",   stockService.findReorderCandidates());
         model.addAttribute("topFiveMovers",  stockService.getTopFiveMovers());
-        // Row 6 — PO aging
+        // Row 6 — recent operation logs
+        model.addAttribute("operationLogs",  operationLogService.findRecentLogs());
+        // Row 7 — PO aging
         model.addAttribute("agingPos",       purchaseOrderService.findAgingPurchaseOrders());
         return "dashboard/dashboard";
     }

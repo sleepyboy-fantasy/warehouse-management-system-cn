@@ -1,0 +1,3 @@
+CREATE SEQUENCE operation_log_SEQ
+    START WITH 1
+    INCREMENT BY 50;
