@@ -19,6 +19,7 @@ import com.example.warehouseManagement.Domains.DTOs.UserFormDto;
 import com.example.warehouseManagement.Domains.Exceptions.DuplicateUserException;
 import com.example.warehouseManagement.Domains.Exceptions.UserNotFoundException;
 import com.example.warehouseManagement.Services.UserService;
+import com.example.warehouseManagement.Services.OperationLogService;
 
 import jakarta.validation.Valid;
 
@@ -31,9 +32,12 @@ public class AdminUserController {
     private static final String UPDATE_USER_ID_PATH = USER_ID_PATH + "/update";
 
     private final UserService userService;
+    private final OperationLogService operationLogService;
 
-    public AdminUserController(UserService userService) {
+    public AdminUserController(UserService userService,
+                               OperationLogService operationLogService) {
         this.userService = userService;
+        this.operationLogService = operationLogService;
     }
 
     @GetMapping
@@ -55,7 +59,8 @@ public class AdminUserController {
     @PostMapping(NEW_USER_PATH)
     public String createUser(@Valid @ModelAttribute("userForm") UserFormDto dto,
                              BindingResult binding,
-                             Model model) {
+                             Model model,
+                             @AuthenticationPrincipal UserDetails principal) {
         if (binding.hasErrors()) {
             return rerenderForm(model, "admin/newUserForm", "New user", true);
         }
@@ -65,6 +70,14 @@ public class AdminUserController {
         }
         try {
             User saved = userService.create(dto);
+
+            operationLogService.record(
+                    getCurrentUsername(principal),
+                    "新增用户",
+                    "User",
+                    "创建用户 " + saved.getUsername()
+            );
+
             return "redirect:/admin/users/" + saved.getId() + "?created";
         } catch (DuplicateUserException e) {
             binding.reject("duplicate", e.getMessage());
@@ -109,12 +122,21 @@ public class AdminUserController {
     public String updateUser(@PathVariable Long userId,
                              @Valid @ModelAttribute("userForm") UserFormDto dto,
                              BindingResult binding,
+                             @AuthenticationPrincipal UserDetails principal,
                              Model model) {
         if (binding.hasErrors()) {
             return rerenderForm(model, "admin/updateUserForm", "Edit user", false);
         }
         try {
-            userService.update(userId, dto);
+            User updated = userService.update(userId, dto);
+
+            operationLogService.record(
+                    getCurrentUsername(principal),
+                    "修改用户",
+                    "User",
+                    "修改用户 " + updated.getUsername()
+            );
+
             return "redirect:/admin/users/" + userId + "?updated";
         } catch (UserNotFoundException e) {
             return "redirect:/admin/users?notFound";
@@ -136,7 +158,19 @@ public class AdminUserController {
             return "redirect:/admin/users/" + userId + "?cannotDeleteSelf";
         }
         userService.delete(userId);
+
+        operationLogService.record(
+                getCurrentUsername(principal),
+                "删除用户",
+                "User",
+                "删除用户 " + user.get().getUsername()
+        );
+
         return "redirect:/admin/users?deleted";
+    }
+
+    private String getCurrentUsername(UserDetails principal) {
+        return principal == null ? "unknown" : principal.getUsername();
     }
 
     private String rerenderForm(Model model, String view, String title, boolean isCreate) {
