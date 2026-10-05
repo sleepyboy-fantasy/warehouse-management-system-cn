@@ -6,7 +6,7 @@
 >
 > 本项目基于开源项目 `rock-and-code/warehouse-management-system` 进行二次开发与中文化。在保留原项目核心架构、业务逻辑及开源许可的基础上，对系统页面、界面文本和项目文档进行了中文本地化，并补充了用户管理、Dashboard 数据分析、库存预警、操作日志等功能。
 
-![系统首页](docs/screenshots/03-dashboard-hero.png)
+![系统首页](docs/screenshots/003-dashboard-hero.png)
 
 ---
 
@@ -564,23 +564,23 @@ Hibernate 不负责自动创建数据库表。
 
 ## 系统截图
 
-### 系统首页（仪表盘）
+### 系统首页
 
 登录后进入系统首页。页面顶部展示 KPI 数据，中间展示库存概览、近 30 天每日销售趋势、供应商采购金额、采购订单状态等图表，同时提供库存预警、补货建议、热销商品、采购订单逾期信息和最近操作日志。
 
-![系统首页](docs/screenshots/02-dashboard.png)
+![系统首页](docs/screenshots/002-dashboard.png)
 
 ### 侧边栏导航
 
 各业务模块通过侧边栏进行分类，并可以展开查看具体功能。顶部导航栏显示当前页面标题和当前登录用户。
 
-![展开的侧边栏](docs/screenshots/04-sidebar-expanded.png)
+![展开的侧边栏](docs/screenshots/004-sidebar-expanded.png)
 
 ### 登录
 
 系统通过 `/login` 提供表单登录功能，同时提供忘记密码入口，可发送密码重置邮件。
 
-![登录页面](docs/screenshots/01-login.png)
+![登录页面](docs/screenshots/001-login.png)
 
 ### 双因素认证
 
@@ -588,13 +588,13 @@ Hibernate 不负责自动创建数据库表。
 
 系统会生成 6 位验证码，并使用 BCrypt 对验证码进行哈希处理后发送邮件。如果没有配置 SMTP，验证码会作为开发环境备用方案输出到应用控制台。
 
-![双因素认证](docs/screenshots/06-verify-2fa.png)
+![双因素认证](docs/screenshots/006-verify-2fa.png)
 
 ### 忘记密码
 
 无论输入的邮箱是否对应系统账户，页面都会显示相同的提示信息，从而避免通过页面反馈判断账户是否存在。
 
-![忘记密码](docs/screenshots/07-forgot-password.png)
+![忘记密码](docs/screenshots/007-forgot-password.png)
 
 ### 管理员用户管理
 
@@ -602,7 +602,7 @@ Hibernate 不负责自动创建数据库表。
 
 该功能仅允许 `ROLE_ADMIN` 用户访问。
 
-![管理员用户管理](docs/screenshots/05-admin-users.png)
+![管理员用户管理](docs/screenshots/005-admin-users.png)
 
 ---
 
