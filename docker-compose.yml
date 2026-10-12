@@ -1,0 +1,12 @@
+services:
+  warehouse-system:
+    image: warehouse-management:latest
+    container_name: warehouse-system
+    ports:
+      - "8080:8080"
+    volumes:
+      - warehouse-data:/app/data
+    restart: always
+
+volumes:
+  warehouse-data:
